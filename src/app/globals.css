@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* kelas dark: mengikuti tema PasarKu (atribut data-theme di <html>) */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
 /* Warna sistem iOS (Human Interface Guidelines, mode terang) */
 :root {
   --ios-bg: #f2f2f7; /* systemGroupedBackground */
@@ -215,4 +218,42 @@ body {
 [data-theme="dark"] .hover\:bg-black\/\[0\.04\]:hover,
 [data-theme="dark"] .hover\:bg-black\/\[0\.03\]:hover { background-color: rgba(255, 255, 255, 0.06); }
 [data-theme="dark"] .bg-black\/\[0\.08\] { background-color: rgba(255, 255, 255, 0.12); }
+
+
+/* ───── layar menunggu AI: bahan jatuh ke wajan ───── */
+@keyframes cook-drop {
+  0% { transform: translateY(-150px) rotate(-18deg); opacity: 0; }
+  55% { opacity: 1; }
+  75% { transform: translateY(6px) rotate(3deg); }
+  100% { transform: translateY(0) rotate(0); opacity: 1; }
+}
+/* setelah semua masuk, wajan "diaduk": bahan sedikit terlempar bergantian */
+@keyframes cook-toss {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-7px); }
+}
+@keyframes cook-steam {
+  0% { transform: translateY(8px); opacity: 0; }
+  40% { opacity: 0.9; }
+  100% { transform: translateY(-14px); opacity: 0; }
+}
+@keyframes cook-flame {
+  0%, 100% { transform: scaleY(1); }
+  50% { transform: scaleY(0.72); }
+}
+@keyframes cook-pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(0.55); opacity: 0.5; }
+}
+.cook-drop {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: cook-drop 0.6s cubic-bezier(0.3, 0.7, 0.4, 1) both, cook-toss 1.6s ease-in-out 3.6s infinite;
+}
+.cook-steam path { animation: cook-steam 2.4s ease-out infinite; }
+.cook-flame path { transform-box: fill-box; transform-origin: bottom; animation: cook-flame 0.5s ease-in-out infinite; }
+.cook-pulse { animation: cook-pulse 1.1s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .cook-drop, .cook-steam path, .cook-flame path, .cook-pulse { animation: none; }
+}
 

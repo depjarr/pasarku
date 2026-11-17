@@ -63,8 +63,8 @@ export function ProductSheet() {
               </div>
 
               <div className="px-5 pb-4">
-                <p className="text-[12px] font-semibold uppercase tracking-wide text-brand-ink">
-                  {sections.find((s) => s.id === p.sectionId)?.name} · {p.shelf}
+                <p className="text-[14px] font-medium text-brand-ink">
+                  {sections.find((s) => s.id === p.sectionId)?.name}, rak {p.shelf.toLowerCase()}
                 </p>
                 <h2 className="mt-0.5 text-[24px] font-bold leading-tight">{p.name}</h2>
                 <p className="mt-1 text-[15px] text-secondary">

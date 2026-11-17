@@ -147,7 +147,7 @@ export function Onboarding() {
                 <Art />
               </div>
               <div className="pb-4 md:flex-1 md:pb-0">
-                <p className="text-[13px] font-semibold uppercase tracking-wide text-brand-ink">{kicker}</p>
+                <p className="text-[15px] font-semibold text-brand-ink">{kicker}</p>
                 <h2 className="mt-1 text-[28px] font-bold leading-[1.15] tracking-tight md:text-[30px]">{title}</h2>
                 <p className="mt-3 text-[16px] leading-relaxed text-secondary">{text}</p>
               </div>
@@ -260,7 +260,7 @@ function AiArt() {
         <span className="rounded-full bg-[#e8f5e2] px-2.5 py-0.5 text-[14px] font-bold text-[#1f7a3d]">4</span>
       </div>
       <div className="rounded-[16px] bg-white p-4 shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
-        <p className="flex items-center gap-1.5 text-[12px] font-semibold uppercase tracking-wide text-brand-ink">
+        <p className="flex items-center gap-1.5 text-[13px] font-semibold text-brand-ink">
           <SparklesIcon className="h-4 w-4" /> Rekomendasi AI
         </p>
         <p className="mt-1 text-[17px] font-bold">Tumis Tempe Cabai</p>

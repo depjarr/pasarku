@@ -27,10 +27,10 @@ export function SuggestionList({ items }: { items: Suggestion[] }) {
             </button>
             <div className="min-w-0 flex-1">
               <p className="text-[15px] font-semibold leading-tight">{p.name}</p>
-              <p className="mt-0.5 text-[13px] leading-snug text-[#3c5a40]">{s.alasan}</p>
+              <p className="mt-0.5 text-[13px] leading-snug text-[#3c5a40]">{s.alasan.charAt(0).toUpperCase() + s.alasan.slice(1)}</p>
               <p className="mt-0.5 text-[12px] text-secondary tabular-nums">
-                {rupiah(p.price)} · {p.unit}
-                {s.untuk && <> · untuk {s.untuk}</>}
+                {rupiah(p.price)} per {p.unit}
+                {s.untuk && <>, untuk {s.untuk}</>}
               </p>
             </div>
             <QtyControl id={p.id} qty={hydrated ? cart[p.id] ?? 0 : 0} />

@@ -70,7 +70,7 @@ function SidebarView({ path }: { path: string }) {
           ))}
         </div>
 
-        <p className="mb-1 mt-6 px-2.5 text-[11px] font-semibold uppercase tracking-wide text-secondary">Section</p>
+        <p className="mb-1 mt-6 px-2.5 text-[12px] font-semibold text-secondary">Section</p>
         <div className="space-y-0.5">
           {sections.map((s) => {
             const n = hydrated ? products.filter((p) => p.sectionId === s.id).reduce((a, p) => a + (items[p.id] ?? 0), 0) : 0;

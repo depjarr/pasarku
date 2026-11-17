@@ -84,16 +84,17 @@ export function NavBar({
           collapsed ? "ios-material border-b border-separator" : "border-b border-transparent bg-transparent"
         }`}
       >
-        <div className="grid h-11 grid-cols-[1fr_auto_1fr] items-center px-2 md:px-6">
+        <div className="grid h-11 grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-1 px-2 md:px-6">
           <div className="min-w-0">
             {back && (
-              <Link href={back.href} className="flex w-fit items-center gap-0.5 rounded-lg py-1 pr-2 text-[17px] text-ios-blue active:opacity-50">
-                <ChevronLeft className="h-[22px] w-[22px]" />
-                <span className="truncate">{back.label}</span>
+              <Link href={back.href} aria-label={back.label} className="flex w-fit max-w-full items-center gap-0.5 rounded-lg py-1 pr-1 text-[17px] text-ios-blue active:opacity-50">
+                <ChevronLeft className="h-[22px] w-[22px] shrink-0" />
+                {/* seperti iOS: judul panjang di HP → cukup tampilkan panah, label disembunyikan */}
+                <span className={`min-w-0 truncate ${title.length > 16 ? "max-md:hidden" : ""}`}>{back.label}</span>
               </Link>
             )}
           </div>
-          <span className={`max-w-[200px] truncate text-[17px] font-semibold transition-opacity duration-200 ${collapsed ? "opacity-100" : "opacity-0"}`}>
+          <span className={`max-w-[62vw] truncate text-center text-[17px] md:max-w-[420px] font-semibold transition-opacity duration-200 ${collapsed ? "opacity-100" : "opacity-0"}`}>
             {title}
           </span>
           <div className="flex justify-end pr-2">{right}</div>
@@ -167,7 +168,7 @@ function TabBarView({ path }: { path: string }) {
 export function Group({ header, footer, children, className = "" }: { header?: React.ReactNode; footer?: React.ReactNode; children: React.ReactNode; className?: string }) {
   return (
     <section className={`mx-4 mt-7 md:mx-8 ${className}`}>
-      {header && <h3 className="px-4 pb-1.5 text-[13px] uppercase tracking-wide text-secondary">{header}</h3>}
+      {header && <h3 className="px-1 pb-2 text-[17px] font-semibold">{header}</h3>}
       <div className="overflow-hidden rounded-[10px] bg-card">{children}</div>
       {footer && <p className="px-4 pt-1.5 text-[13px] leading-snug text-secondary">{footer}</p>}
     </section>

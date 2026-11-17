@@ -13,9 +13,9 @@ function recipeText(m: Menu) {
     .map((t) => `*${t.nama}*\n${t.langkah.map((s) => `${++no}. ${s.instruksi}`).join("\n")}`)
     .join("\n\n");
   return (
-    `🍳 *${m.nama}*\n${m.resep.subjudul}\n\n` +
-    `👥 ${m.porsi} porsi · ⏱️ ${m.waktuMasakMenit} menit · 🔥 ${Math.round(m.nutrisiPerPorsi.kalori)} kkal/porsi\n\n` +
-    `${bahan}\n\n${langkah}\n\n✅ Tanda matang: ${m.resep.tandaMatang}\n🍽️ ${m.resep.penyajian}\n\n— Resep dari PasarKu (Dapur AI)`
+    `*${m.nama}*\n${m.resep.subjudul}\n\n` +
+    `Untuk ${m.porsi} porsi, ${m.waktuMasakMenit} menit, ${Math.round(m.nutrisiPerPorsi.kalori)} kkal per porsi.\n\n` +
+    `${bahan}\n\n${langkah}\n\nTanda matang: ${m.resep.tandaMatang}\nPenyajian: ${m.resep.penyajian}\n\nResep dari PasarKu`
   );
 }
 

@@ -97,7 +97,7 @@ export default function Home() {
             </span>
             <span className="leading-tight">
               <span className="block text-[18px] font-bold">PasarKu</span>
-              <span className="block text-[11px] text-secondary">Pasar segar · Dapur AI</span>
+              <span className="block text-[11px] text-secondary">Pasar segar & dapur AI</span>
             </span>
           </Link>
           <div className="flex items-center gap-2">
@@ -130,7 +130,7 @@ export default function Home() {
                 trailing={<ChevronRight className="h-4 w-4 text-tertiary" />}
               >
                 <p className="truncate text-[17px]">{p.name}</p>
-                <p className="text-[13px] text-secondary">{rupiah(p.price)} · {p.unit} · {sections.find((s) => s.id === p.sectionId)?.name}</p>
+                <p className="text-[13px] text-secondary">{rupiah(p.price)} per {p.unit}, di {sections.find((s) => s.id === p.sectionId)?.name}</p>
               </Cell>
             ))
           )}
@@ -174,7 +174,7 @@ export default function Home() {
           {/* ───── banner promo (tablet & laptop) ───── */}
           <div className="hidden gap-4 px-8 pt-8 md:grid md:grid-cols-[1.5fr_1fr] xl:px-10">
             <Link href="/section/buah" className="relative overflow-hidden rounded-[22px] bg-[#1f4d2c] p-6 text-white">
-              <p className="text-[12px] font-bold uppercase tracking-[0.16em] text-[#a7e0b0]">Lagi musim</p>
+              <p className="text-[14px] font-semibold text-[#a7e0b0]">Lagi musim</p>
               <p className="mt-1 text-[28px] font-extrabold leading-tight">Buah Tropis<br /><span className="text-[#9ee6a8]">Akhir Tahun</span></p>
               <p className="mt-2 max-w-[220px] text-[13px] text-white/80">Rambutan, durian, manggis & mangga lagi manis-manisnya.</p>
               <span className="mt-4 inline-block rounded-full bg-[#34c759] px-4 py-2 text-[13px] font-bold">Belanja Buah</span>
@@ -225,7 +225,7 @@ function HeroMobile() {
       {/* kartu promo utama */}
       <Link href="#kategori" className="relative flex h-[176px] w-[88%] shrink-0 snap-center overflow-hidden rounded-[22px] bg-[#1f4d2c] p-5 text-white">
         <div className="relative z-10 max-w-[54%]">
-          <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#a7e0b0]">Segar setiap hari</p>
+          <p className="text-[13px] font-semibold text-[#a7e0b0]">Segar setiap hari</p>
           <p className="mt-1 text-[19px] font-extrabold leading-[1.15]">Bahan segar,<br />masak lebih sehat</p>
           <span className="mt-3 inline-block rounded-full bg-white px-4 py-1.5 text-[13px] font-bold text-[#1f4d2c]">Mulai Belanja</span>
         </div>
@@ -234,7 +234,7 @@ function HeroMobile() {
       {/* kartu Dapur AI */}
       <Link href="/keranjang" className="relative flex h-[176px] w-[88%] shrink-0 snap-center overflow-hidden rounded-[22px] bg-[#c7f07a] p-5">
         <div className="relative z-10 max-w-[62%]">
-          <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#2d5a1a]">Dapur AI</p>
+          <p className="text-[13px] font-semibold text-[#2d5a1a]">Dapur AI</p>
           <p className="mt-1 text-[19px] font-extrabold leading-[1.15] text-[#1f3d12]">Keranjang jadi menu & resep lengkap</p>
           <span className="mt-3 inline-flex items-center gap-1 rounded-full bg-[#1f4d2c] px-4 py-1.5 text-[13px] font-bold text-white"><SparkI className="h-4 w-4" /> Coba</span>
         </div>
@@ -251,7 +251,7 @@ function HeroDesktop() {
     <section className="mx-8 mt-2 hidden overflow-hidden rounded-[28px] bg-gradient-to-br from-[#f3f9ef] via-[#eef6e9] to-[#e2f0da] md:block xl:mx-10 xl:mt-6">
       <div className="grid grid-cols-[1.05fr_1fr] items-center gap-4 px-8 pt-8 xl:px-10 xl:pt-10">
         <div>
-          <p className="text-[12px] font-bold uppercase tracking-[0.18em] text-[#2f8a45]">Segar setiap hari</p>
+          <p className="text-[15px] font-semibold text-[#2f8a45]">Segar setiap hari</p>
           <h1 className="mt-3 text-[34px] font-extrabold leading-[1.05] tracking-tight xl:text-[44px]">
             Bahan Segar,<br />
             <span className="text-[#2f8a45]">Hidup Lebih Sehat</span>
@@ -261,7 +261,7 @@ function HeroDesktop() {
           </p>
           <div className="mt-6 flex gap-3">
             <Link href="#kategori" className="whitespace-nowrap rounded-[12px] bg-[#1f4d2c] px-5 py-3 text-[14px] font-bold text-white hover:brightness-110">
-              Mulai Belanja →
+              Mulai Belanja
             </Link>
             <Link href="/keranjang" className="flex items-center gap-1.5 whitespace-nowrap rounded-[12px] border border-[#1f4d2c]/25 bg-white px-5 py-3 text-[14px] font-bold text-[#1f4d2c] hover:bg-[#f6fbf3]">
               <SparkI className="h-4 w-4" /> Coba Dapur AI
@@ -272,7 +272,7 @@ function HeroDesktop() {
           <span className="absolute left-2 top-4 z-10 grid h-[92px] w-[92px] place-items-center rounded-full bg-[#1f4d2c] text-center text-white shadow-xl">
             <span className="leading-tight">
               <span className="block text-[26px] font-extrabold">{products.length}</span>
-              <span className="block text-[11px] font-semibold uppercase tracking-wide text-[#a7e0b0]">produk</span>
+              <span className="block text-[12px] font-medium text-[#a7e0b0]">produk</span>
             </span>
           </span>
           <BasketArt images={HERO_BASKET.map(img).filter(Boolean) as string[]} className="ml-auto w-[300px] max-w-full xl:w-[380px]" />
@@ -302,7 +302,7 @@ function SectionTitle({ title, id, link }: { title: string; id?: string; link?: 
       <h2 className="text-[20px] font-bold md:text-[22px]">{title}</h2>
       {link && (
         <Link href={link.href} className="text-[14px] font-semibold text-[#2f8a45]">
-          {link.label} →
+          {link.label}
         </Link>
       )}
     </div>
@@ -316,7 +316,7 @@ function ProductCard({ p }: { p: Product }) {
   return (
     <div className="w-[150px] shrink-0 rounded-[18px] bg-white p-3 shadow-[0_1px_3px_rgba(0,0,0,0.06)] md:w-auto">
       <button onClick={() => open(p.id)} aria-label={`Lihat detail ${p.name}`} className="relative grid aspect-square w-full place-items-center rounded-[14px] bg-[#f4f8f1] active:scale-[0.98]">
-        <span className="absolute left-2 top-2 rounded-full bg-[#2f8a45] px-2 py-0.5 text-[10px] font-bold uppercase text-white">Musim</span>
+        <span className="absolute left-2 top-2 rounded-full bg-[#2f8a45] px-2 py-0.5 text-[11px] font-semibold text-white">Musim</span>
         <ProductImage p={p} size={96} className="md:!h-[120px] md:!w-[120px]" />
       </button>
       <p className="mt-2 line-clamp-1 text-[14px] font-semibold">{p.name}</p>
@@ -343,7 +343,7 @@ function Footer() {
           </p>
         </div>
         <div>
-          <p className="text-[12px] font-bold uppercase tracking-wide text-[#a7e0b0]">Kategori</p>
+          <p className="text-[14px] font-semibold text-[#a7e0b0]">Kategori</p>
           <ul className="mt-3 space-y-1.5 text-[13px] text-white/80">
             {sections.slice(0, 5).map((s) => (
               <li key={s.id}><Link href={`/section/${s.id}`} className="hover:text-white">{s.name}</Link></li>
@@ -351,7 +351,7 @@ function Footer() {
           </ul>
         </div>
         <div>
-          <p className="text-[12px] font-bold uppercase tracking-wide text-[#a7e0b0]">Fitur</p>
+          <p className="text-[14px] font-semibold text-[#a7e0b0]">Fitur</p>
           <ul className="mt-3 space-y-1.5 text-[13px] text-white/80">
             <li><Link href="/keranjang" className="hover:text-white">Keranjang</Link></li>
             <li><Link href="/rekomendasi" className="hover:text-white">Rekomendasi Menu AI</Link></li>
@@ -360,7 +360,7 @@ function Footer() {
         </div>
       </div>
       <p className="mt-8 border-t border-white/15 pt-4 text-[11px] text-white/55">
-        © 2026 PasarKu · Proyek portofolio. Foto bahan: TheMealDB & Wikimedia Commons. Harga perkiraan rata-rata supermarket Indonesia.
+        © 2026 PasarKu, proyek portofolio. Foto bahan: TheMealDB & Wikimedia Commons. Harga perkiraan rata-rata supermarket Indonesia.
       </p>
     </footer>
   );

@@ -45,7 +45,7 @@ export function SectionView({ id }: { id: string }) {
   return (
     <main className="wall flex-1 pb-[300px]">
       <NavBar title={section.name} back={{ href: "/", label: "Toko" }}>
-        <p className="text-[15px] text-secondary">{section.tagline} · ketuk produk untuk info gizi</p>
+        <p className="text-[15px] text-secondary">{section.tagline}. Ketuk produk untuk melihat gizinya.</p>
         {section.shelves.length > 1 && (
           <div className="mt-3 md:max-w-[560px]">
             <Segmented options={section.shelves.map((s) => ({ value: s, label: s }))} value={shelf} onChange={jump} />

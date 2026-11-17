@@ -161,8 +161,7 @@ export function RecipeView({ index }: { index: number }) {
       {m.saranBahan?.length > 0 && (
         <section className="mx-4 mt-4 overflow-hidden rounded-[14px] bg-white ring-1 ring-[#d5e4cd]">
           <div className="flex items-center justify-between bg-[#fff6e0] px-4 py-2.5">
-            <h2 className="text-[14px] font-bold uppercase tracking-wide text-[#8a5a00]">Lengkapi Bahan</h2>
-            <span className="text-[12px] text-[#8a5a00]/80">saran AI</span>
+            <h2 className="text-[15px] font-bold text-[#8a5a00]">Bahan yang bikin menu ini lebih lengkap</h2>
           </div>
           <SuggestionList items={m.saranBahan} />
         </section>
@@ -250,7 +249,7 @@ export function RecipeView({ index }: { index: number }) {
       </div>
 
       <p className="mx-6 mt-6 text-center text-[12px] text-secondary">
-        Resep & nilai gizi disusun oleh AI dari isi keranjangmu · PasarKu
+        Resep dan nilai gizi disusun AI PasarKu dari isi keranjangmu.
       </p>
     </main>
   );
@@ -357,7 +356,7 @@ function Nutrition({ m }: { m: Menu }) {
       <div className="flex items-start justify-between">
         <div>
           <p className="text-[17px] font-black">Informasi Nilai Gizi</p>
-          <p className="text-[12px] text-secondary">per 1 porsi · indeks glikemik {m.indeksGlikemik.toLowerCase()}</p>
+          <p className="text-[12px] text-secondary">per 1 porsi, indeks glikemik {m.indeksGlikemik.toLowerCase()}</p>
         </div>
         <span className="rounded-full bg-[#e3f2dc] px-2.5 py-1 text-[12px] font-bold text-brand-ink">Skor {Math.round(m.skorKesehatan)}/10</span>
       </div>

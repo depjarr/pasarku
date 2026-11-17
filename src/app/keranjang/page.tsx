@@ -43,7 +43,7 @@ export default function CartSummary() {
                   trailing={<Stepper value={l.qty} onMinus={() => remove(l.id)} onPlus={() => add(l.id)} />}
                 >
                   <p className="truncate text-[15px] font-medium">{l.name}</p>
-                  <p className="text-[13px] text-secondary tabular-nums">{rupiah(l.subtotal)} · {l.unit}</p>
+                  <p className="text-[13px] text-secondary tabular-nums">{rupiah(l.subtotal)}, {l.qty} × {l.unit}</p>
                 </Cell>
               ))}
             </Group>

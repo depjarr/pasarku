@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { CheckIcon, ChefIcon, ChevronRight, ClockIcon, FlameIcon, Group, NavBar, PeopleIcon, PrimaryButton, SparklesIcon } from "@/components/ios";
 import { useCart, useCartLines } from "@/lib/cart";
+import { CookingLoader } from "@/components/CookingLoader";
 import { SuggestionList } from "@/components/Suggestions";
 import { WebPhoto } from "@/components/WebPhoto";
 import { productById } from "@/lib/data";
@@ -71,7 +72,7 @@ export default function RecommendationPage() {
         }
       >
         <p className="text-[15px] text-secondary">
-          {orang} orang · {goals.find((g) => g.id === tujuan)?.label}
+          Untuk {orang} orang, fokus {goals.find((g) => g.id === tujuan)?.label.toLowerCase()}
         </p>
       </NavBar>
 
@@ -88,7 +89,7 @@ export default function RecommendationPage() {
       ) : !data && !confirmed ? (
         <PortionPicker onConfirm={() => setConfirmed(true)} />
       ) : !data ? (
-        <Loading />
+        <CookingLoader orang={orang} tujuan={goals.find((g) => g.id === tujuan)?.label ?? ""} />
       ) : (
         <>
           {stale && (
@@ -107,7 +108,7 @@ export default function RecommendationPage() {
 function Content({ data }: { data: Recommendation }) {
   return (
     <>
-      <p className="mx-4 mt-3 rounded-[12px] bg-card p-4 text-[15px] leading-relaxed md:mx-8">{data.ringkasan}</p>
+      <p className="mx-4 mt-2 max-w-[62ch] border-l-[3px] border-[#1f7a3d] pl-4 text-[17px] leading-relaxed md:mx-8">{data.ringkasan}</p>
 
       <NutritionRings menus={data.menus} />
       <AllSuggestions data={data} />
@@ -205,7 +206,7 @@ function MenuCard({ m, i }: { m: Menu; i: number }) {
       </div>
       <div className="flex items-center gap-2 p-4">
         <div className="min-w-0 flex-1">
-          <p className="text-[12px] font-semibold uppercase tracking-wide text-brand-ink">{m.jenis} · {m.waktuMakan}</p>
+          <p className="text-[14px] font-medium text-brand-ink">{m.waktuMakan.charAt(0).toUpperCase() + m.waktuMakan.slice(1).toLowerCase()}, {m.jenis.toLowerCase()}</p>
           <h3 className="text-[19px] font-bold leading-tight">{m.nama}</h3>
           <p className="mt-0.5 line-clamp-2 text-[14px] text-secondary">{m.deskripsi}</p>
           <div className="mt-2 flex flex-wrap gap-x-3 gap-y-1 text-[13px] text-secondary">
@@ -228,23 +229,6 @@ function Empty({ title, text, href, cta }: { title: string; text: string; href: 
       <p className="mt-3 text-[20px] font-semibold">{title}</p>
       <p className="mt-1 text-[15px] text-secondary">{text}</p>
       <Link href={href} className="mt-5 inline-block text-[17px] text-ios-blue">{cta}</Link>
-    </div>
-  );
-}
-
-function Loading() {
-  return (
-    <div className="px-4 pt-4 md:px-8">
-      <div className="flex items-center gap-3 rounded-[12px] bg-card p-4">
-        <span className="h-5 w-5 animate-spin rounded-full border-[2.5px] border-fill border-t-[#8e8e93]" />
-        <div>
-          <p className="text-[15px] font-semibold">AI sedang meracik menu…</p>
-          <p className="text-[13px] text-secondary">Menyusun resep, menghitung kalori, protein & vitamin</p>
-        </div>
-      </div>
-      <div className="mt-4 grid gap-3 md:grid-cols-2 xl:grid-cols-1 2xl:grid-cols-2">
-        {[0, 1, 2].map((i) => <div key={i} className="skeleton h-[220px] rounded-[16px]" />)}
-      </div>
     </div>
   );
 }
