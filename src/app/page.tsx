@@ -9,6 +9,7 @@ import { ProductImage } from "@/components/ProductImage";
 import { QtyControl } from "@/components/QtyControl";
 import { useCart, useCartLines } from "@/lib/cart";
 import { productById, products, rupiah, sections, type Product } from "@/lib/data";
+import { AppLogo } from "@/components/AppLogo";
 import { IntroButton } from "@/components/Onboarding";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { useProductSheet } from "@/lib/productSheet";
@@ -92,9 +93,7 @@ export default function Home() {
       <header className="sticky top-0 z-30 bg-background/90 px-4 pb-3 pt-[max(env(safe-area-inset-top),12px)] backdrop-blur-xl md:px-8 xl:hidden">
         <div className="mb-3 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2">
-            <span className="grid h-9 w-9 place-items-center rounded-[11px] bg-gradient-to-br from-[#34c759] to-[#1f7a3d] text-white shadow-sm">
-              <BasketIcon className="h-5 w-5" />
-            </span>
+            <AppLogo size={40} />
             <span className="leading-tight">
               <span className="block text-[18px] font-bold">PasarKu</span>
               <span className="block text-[11px] text-secondary">Pasar segar & dapur AI</span>

@@ -12,6 +12,7 @@ import { products, rupiah, sections } from "@/lib/data";
 import { useHydrated } from "@/lib/useHydrated";
 import { BasketIcon, PrimaryButton, SparklesIcon, Stepper, StoreIcon } from "./ios";
 import { ProductImage } from "./ProductImage";
+import { AppLogo } from "./AppLogo";
 import { IntroButton } from "./Onboarding";
 import { ThemeToggle } from "./ThemeToggle";
 
@@ -50,9 +51,7 @@ function SidebarView({ path }: { path: string }) {
         </span>
       </div>
       <Link href="/" className="mx-5 mb-5 flex items-center gap-2">
-        <span className="grid h-9 w-9 place-items-center rounded-[10px] bg-gradient-to-br from-[#34c759] to-[#1f9e48] text-white shadow-sm">
-          <BasketIcon className="h-5 w-5" />
-        </span>
+        <AppLogo size={40} />
         <span>
           <span className="block text-[17px] font-bold leading-tight">PasarKu</span>
           <span className="block text-[12px] text-secondary">Supermarket + Dapur AI</span>

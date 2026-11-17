@@ -7,6 +7,7 @@
  */
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { productById, products, rupiah, sections } from "@/lib/data";
+import { AppLogo } from "./AppLogo";
 import { BasketArt } from "./Basket";
 import { BasketIcon, ChefIcon, FlameIcon, PeopleIcon, SparklesIcon, StoreIcon, XIcon } from "./ios";
 import { ProductImage } from "./ProductImage";
@@ -123,9 +124,7 @@ export function Onboarding() {
         {/* atas: logo + lewati */}
         <div className="flex items-center justify-between px-5 pb-2 pt-[max(env(safe-area-inset-top),16px)] md:pt-5">
           <span className="flex items-center gap-2">
-            <span className="grid h-8 w-8 place-items-center rounded-[10px] bg-gradient-to-br from-[#34c759] to-[#1f7a3d] text-white">
-              <BasketIcon className="h-[18px] w-[18px]" />
-            </span>
+            <AppLogo size={34} />
             <span className="text-[17px] font-bold">PasarKu</span>
           </span>
           {last ? (
