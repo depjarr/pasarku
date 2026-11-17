@@ -44,6 +44,8 @@ export default function RecommendationPage() {
         setResult({ key, data: json as Recommendation });
         // otomatis masuk Rantang Resep
         useCookbook.getState().addFromRecommendation(key, json as Recommendation, orang, tujuan);
+        // bahan sudah "dipakai" jadi resep → keranjang dikosongkan untuk belanja berikutnya
+        useCart.getState().clear();
       })
       .catch((e) => e.name !== "AbortError" && setError(e.message));
     return () => ctrl.abort();
@@ -79,9 +81,7 @@ export default function RecommendationPage() {
         </p>
       </NavBar>
 
-      {!hydrated ? null : !hasItems ? (
-        <Empty title="Belum ada bahan" text="Isi keranjang dulu, lalu AI akan meracik menu dan resepnya." href="/" cta="Mulai Belanja" />
-      ) : error ? (
+      {!hydrated ? null : error ? (
         <div className="px-8 pt-20 text-center">
           <p className="text-[20px] font-semibold">Gagal meracik menu</p>
           <p className="mt-1 text-[15px] text-secondary">{error}</p>
@@ -89,13 +89,16 @@ export default function RecommendationPage() {
             <PrimaryButton onClick={retry}>Coba Lagi</PrimaryButton>
           </div>
         </div>
+      ) : !data && !hasItems ? (
+        <Empty title="Belum ada bahan" text="Isi keranjang dulu, lalu AI akan meracik menu dan resepnya." href="/" cta="Mulai Belanja" />
       ) : !data && !confirmed ? (
         <PortionPicker onConfirm={() => setConfirmed(true)} />
       ) : !data ? (
         <CookingLoader orang={orang} tujuan={goals.find((g) => g.id === tujuan)?.label ?? ""} />
       ) : (
         <>
-          {stale && (
+          {!hasItems && result && <SavedNotice cartKey={result.key} />}
+          {stale && hasItems && (
             <div className="mx-4 mt-3 flex items-center justify-between gap-3 rounded-[12px] bg-[#fff6e0] p-3.5 md:mx-8">
               <p className="text-[13px] leading-snug text-[#6b4a00]">Isi keranjang berubah sejak menu ini diracik.</p>
               <button onClick={restart} className="shrink-0 rounded-full bg-[#1f4d2c] px-3.5 py-1.5 text-[13px] font-semibold text-white">Racik ulang</button>
@@ -222,6 +225,33 @@ function MenuCard({ m, i }: { m: Menu; i: number }) {
         <ChevronRight className="h-5 w-5 shrink-0 text-tertiary" />
       </div>
     </Link>
+  );
+}
+
+/** Pemberitahuan setelah resep masuk rantang dan keranjang dikosongkan, dengan opsi mengembalikan isi keranjang. */
+function SavedNotice({ cartKey }: { cartKey: string }) {
+  const restore = () => {
+    try {
+      const [entries] = JSON.parse(cartKey) as [[string, number][]];
+      useCart.getState().setItems(Object.fromEntries(entries));
+    } catch {
+      // kunci lama tidak terbaca → biarkan keranjang kosong
+    }
+  };
+  return (
+    <div className="mx-4 mt-3 rounded-[14px] bg-[#eaf6e4] p-3.5 md:mx-8 dark:bg-[#1f3a26]">
+      <p className="text-[14px] leading-snug text-[#1f4d2c] dark:text-[#cfeccf]">
+        Resep ini sudah masuk Rantang Resep, dan keranjangmu dikosongkan untuk belanja berikutnya.
+      </p>
+      <div className="mt-2.5 flex flex-wrap gap-2">
+        <Link href="/resep-saya" className="rounded-full bg-[#1f7a3d] px-3.5 py-1.5 text-[13px] font-semibold text-white active:opacity-80">
+          Buka rantang
+        </Link>
+        <button onClick={restore} className="rounded-full bg-white px-3.5 py-1.5 text-[13px] font-semibold text-[#1f4d2c] active:opacity-70 dark:bg-white/10 dark:text-[#cfeccf]">
+          Kembalikan isi keranjang
+        </button>
+      </div>
+    </div>
   );
 }
 

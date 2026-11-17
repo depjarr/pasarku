@@ -10,6 +10,8 @@ type CartState = {
   add: (id: string) => void;
   remove: (id: string) => void;
   clear: () => void;
+  /** ganti seluruh isi keranjang (dipakai untuk "Kembalikan keranjang") */
+  setItems: (items: Record<string, number>) => void;
   setDrawer: (open: boolean) => void;
 };
 
@@ -27,6 +29,7 @@ export const useCart = create<CartState>()(
           return { items: next };
         }),
       clear: () => set({ items: {} }),
+      setItems: (items) => set({ items }),
       setDrawer: (open) => set({ drawerOpen: open }),
     }),
     { name: "pasarku-cart", partialize: (s) => ({ items: s.items }) },
