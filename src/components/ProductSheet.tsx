@@ -6,7 +6,7 @@ import { productById, rupiah, sections } from "@/lib/data";
 import { productInfo } from "@/lib/productInfo";
 import { useProductSheet } from "@/lib/productSheet";
 import { useHydrated } from "@/lib/useHydrated";
-import { PrimaryButton, Stepper, XIcon } from "./ios";
+import { CheckIcon, PrimaryButton, Stepper, XIcon } from "./ios";
 import { ProductImage } from "./ProductImage";
 
 const GIZI = [
@@ -54,7 +54,7 @@ export function ProductSheet() {
           <>
             <div className="no-scrollbar flex-1 overflow-y-auto">
               {/* foto */}
-              <div className="relative grid h-[220px] place-items-center rounded-t-[16px] bg-gradient-to-b from-[#eef6ea] to-background md:rounded-t-[18px]">
+              <div className="relative grid h-[220px] place-items-center rounded-t-[16px] bg-[#eef6ea] md:rounded-t-[18px]">
                 <div className="absolute left-1/2 top-[6px] h-[5px] w-9 -translate-x-1/2 rounded-full bg-black/15 md:hidden" />
                 <button onClick={close} aria-label="Tutup" className="absolute right-3 top-3 grid h-8 w-8 place-items-center rounded-full bg-black/[0.06] text-secondary active:opacity-60">
                   <XIcon className="h-4 w-4" />
@@ -91,7 +91,7 @@ export function ProductSheet() {
                     <ul className="mt-2 space-y-1.5 rounded-[12px] bg-card p-3.5">
                       {info.tips.map((t, i) => (
                         <li key={i} className="flex gap-2 text-[14px] leading-snug">
-                          <span className="text-brand-ink">✓</span>
+                          <CheckIcon className="mt-0.5 h-4 w-4 shrink-0 text-brand-ink" />
                           {t}
                         </li>
                       ))}

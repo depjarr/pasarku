@@ -11,21 +11,20 @@ export type Product = {
 export type Section = {
   id: string;
   name: string;
-  emoji: string;
   tagline: string;
   color: string; // warna aksen papan section
   shelves: string[];
 };
 
 export const sections: Section[] = [
-  { id: "buah", name: "Buah", emoji: "🍎", tagline: "Segar dari kebun", color: "#e85d4a", shelves: ["Buah Lokal", "Buah Tropis", "Buah Impor"] },
-  { id: "sayur", name: "Sayur", emoji: "🥬", tagline: "Hijau & renyah", color: "#3f9b53", shelves: ["Sayur Daun & Herba", "Sayur Buah & Polong", "Umbi, Bawang & Jamur"] },
-  { id: "daging", name: "Daging", emoji: "🥩", tagline: "Potongan pilihan", color: "#b8323f", shelves: ["Sapi, Kambing & Domba", "Unggas"] },
-  { id: "ikan", name: "Ikan & Seafood", emoji: "🐟", tagline: "Tangkapan hari ini", color: "#2f7fb8", shelves: ["Ikan Segar", "Udang, Cumi & Kerang", "Ikan Kering"] },
-  { id: "susu-telur", name: "Tahu, Tempe & Telur", emoji: "🥚", tagline: "Protein harian", color: "#d9a21b", shelves: ["Tahu & Tempe", "Telur & Susu", "Keju & Mentega"] },
-  { id: "karbo", name: "Beras & Karbo", emoji: "🍚", tagline: "Sumber energi", color: "#a0703c", shelves: ["Beras & Mi", "Umbi-umbian", "Roti & Pasta"] },
-  { id: "bumbu", name: "Bumbu & Rempah", emoji: "🧄", tagline: "Rahasia rasa nusantara", color: "#7a5bb5", shelves: ["Bumbu Segar", "Daun Bumbu", "Rempah Kering"] },
-  { id: "sembako", name: "Sembako & Kacang", emoji: "🥜", tagline: "Kebutuhan dapur", color: "#5b7f2e", shelves: ["Gula, Garam, Tepung & Minyak", "Kacang-kacangan", "Kecap & Madu"] },
+  { id: "buah", name: "Buah", tagline: "Segar dari kebun", color: "#e85d4a", shelves: ["Buah Lokal", "Buah Tropis", "Buah Impor"] },
+  { id: "sayur", name: "Sayur", tagline: "Hijau & renyah", color: "#3f9b53", shelves: ["Sayur Daun & Herba", "Sayur Buah & Polong", "Umbi, Bawang & Jamur"] },
+  { id: "daging", name: "Daging", tagline: "Potongan pilihan", color: "#b8323f", shelves: ["Sapi, Kambing & Domba", "Unggas"] },
+  { id: "ikan", name: "Ikan & Seafood", tagline: "Tangkapan hari ini", color: "#2f7fb8", shelves: ["Ikan Segar", "Udang, Cumi & Kerang", "Ikan Kering"] },
+  { id: "susu-telur", name: "Tahu, Tempe & Telur", tagline: "Protein harian", color: "#d9a21b", shelves: ["Tahu & Tempe", "Telur & Susu", "Keju & Mentega"] },
+  { id: "karbo", name: "Beras & Karbo", tagline: "Sumber energi", color: "#a0703c", shelves: ["Beras & Mi", "Umbi-umbian", "Roti & Pasta"] },
+  { id: "bumbu", name: "Bumbu & Rempah", tagline: "Rahasia rasa nusantara", color: "#7a5bb5", shelves: ["Bumbu Segar", "Daun Bumbu", "Rempah Kering"] },
+  { id: "sembako", name: "Sembako & Kacang", tagline: "Kebutuhan dapur", color: "#5b7f2e", shelves: ["Gula, Garam, Tepung & Minyak", "Kacang-kacangan", "Kecap & Madu"] },
 ];
 
 /**

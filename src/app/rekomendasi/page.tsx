@@ -189,7 +189,7 @@ function MenuCard({ m, i }: { m: Menu; i: number }) {
   return (
     <Link href={`/resep/${i}`} className="block overflow-hidden rounded-[16px] bg-card transition active:scale-[0.98]">
       {/* foto hidangan dari Google Images; cadangan: bahan-bahan dari keranjang di atas piring */}
-      <div className="relative h-[160px] bg-gradient-to-br from-[#eaf6e4] to-[#d6ecd0]">
+      <div className="relative h-[160px] bg-[#e4f1dd]">
         <WebPhoto
           query={m.kataKunciFoto ?? m.nama}
           className="h-full w-full"
@@ -276,7 +276,7 @@ function PortionPicker({ onConfirm }: { onConfirm: () => void }) {
     <div className="mx-auto mt-3 w-full max-w-[560px] px-4 md:mt-6">
       <div className="overflow-hidden rounded-[20px] bg-card shadow-[0_1px_2px_rgba(0,0,0,0.04)]">
         {/* bahan di keranjang */}
-        <div className="flex items-center gap-3 bg-gradient-to-br from-[#eaf6e4] to-[#d6ecd0] px-5 py-4">
+        <div className="flex items-center gap-3 bg-[#e4f1dd] px-5 py-4">
           <div className="flex -space-x-3">
             {lines.slice(0, 5).map((l) => (
               <span key={l.id} className="grid h-11 w-11 place-items-center rounded-full bg-white shadow ring-2 ring-[#eaf6e4]">

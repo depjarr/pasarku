@@ -14,29 +14,29 @@ import { useRecs } from "@/lib/recs";
 import type { Menu, Technique } from "@/lib/schema";
 import { useHydrated } from "@/lib/useHydrated";
 
-/** Ilustrasi tiap teknik memasak: ikon + warna latar ubin langkah. */
-const TECH: Record<Technique, { label: string; icon: string; bg: string }> = {
-  siapkan: { label: "Siapkan", icon: "🧺", bg: "#f3efe4" },
-  cuci: { label: "Cuci", icon: "💧", bg: "#e4f1fb" },
-  potong: { label: "Potong", icon: "🔪", bg: "#f2ebe3" },
-  haluskan: { label: "Haluskan", icon: "🪨", bg: "#efe9e1" },
-  marinasi: { label: "Marinasi", icon: "🧂", bg: "#f6efe2" },
-  campur: { label: "Campur", icon: "🥣", bg: "#eef3e6" },
-  uleni: { label: "Uleni", icon: "👐", bg: "#f6eee4" },
-  bentuk: { label: "Bentuk", icon: "🤲", bg: "#f6eee4" },
-  isi: { label: "Isi", icon: "🥟", bg: "#f6efe2" },
-  rebus: { label: "Rebus", icon: "🍲", bg: "#e6f0f6" },
-  kukus: { label: "Kukus", icon: "♨️", bg: "#eaf1f4" },
-  goreng: { label: "Goreng", icon: "🍳", bg: "#fbf0dc" },
-  tumis: { label: "Tumis", icon: "🥘", bg: "#fbeedd" },
-  panggang: { label: "Panggang", icon: "🫓", bg: "#f8e9dc" },
-  bakar: { label: "Bakar", icon: "🔥", bg: "#fbe5dc" },
-  blender: { label: "Blender", icon: "🌀", bg: "#e9eef8" },
-  saring: { label: "Saring", icon: "🫗", bg: "#e8f2f2" },
-  diamkan: { label: "Diamkan", icon: "⏲️", bg: "#eeeef3" },
-  balur: { label: "Balur", icon: "🥥", bg: "#f1f4ea" },
-  tata: { label: "Tata", icon: "🍽️", bg: "#eef4ea" },
-  sajikan: { label: "Sajikan", icon: "😋", bg: "#eaf5e6" },
+/** Label tiap teknik memasak + warna latar ubin langkah. */
+const TECH: Record<Technique, { label: string; bg: string }> = {
+  siapkan: { label: "Siapkan", bg: "#f3efe4" },
+  cuci: { label: "Cuci", bg: "#e4f1fb" },
+  potong: { label: "Potong", bg: "#f2ebe3" },
+  haluskan: { label: "Haluskan", bg: "#efe9e1" },
+  marinasi: { label: "Marinasi", bg: "#f6efe2" },
+  campur: { label: "Campur", bg: "#eef3e6" },
+  uleni: { label: "Uleni", bg: "#f6eee4" },
+  bentuk: { label: "Bentuk", bg: "#f6eee4" },
+  isi: { label: "Isi", bg: "#f6efe2" },
+  rebus: { label: "Rebus", bg: "#e6f0f6" },
+  kukus: { label: "Kukus", bg: "#eaf1f4" },
+  goreng: { label: "Goreng", bg: "#fbf0dc" },
+  tumis: { label: "Tumis", bg: "#fbeedd" },
+  panggang: { label: "Panggang", bg: "#f8e9dc" },
+  bakar: { label: "Bakar", bg: "#fbe5dc" },
+  blender: { label: "Blender", bg: "#e9eef8" },
+  saring: { label: "Saring", bg: "#e8f2f2" },
+  diamkan: { label: "Diamkan", bg: "#eeeef3" },
+  balur: { label: "Balur", bg: "#f1f4ea" },
+  tata: { label: "Tata", bg: "#eef4ea" },
+  sajikan: { label: "Sajikan", bg: "#eaf5e6" },
 };
 
 const GREEN = "#2f6b2a";
@@ -227,12 +227,21 @@ export function RecipeView({ source }: { source: RecipeSource }) {
               return (
                 <div key={stepNo} className="flex flex-col overflow-hidden rounded-[12px] bg-white ring-1 ring-[#dfe9d8]">
                   <div className="relative aspect-[4/3]" style={{ background: tech.bg }}>
-                    {/* foto proses langkah ini dari Google Images; cadangan: ikon teknik */}
+                    {/* foto proses langkah ini dari Google Images; cadangan: foto bahan yang dipakai */}
                     <WebPhoto
                       query={s.kataKunciFoto ?? `${tech.label} ${used.map((p) => p.name).join(" ")}`}
                       className="absolute inset-0"
                       fallback={
-                        <span className="absolute inset-0 grid place-items-center text-[46px] drop-shadow-[0_4px_4px_rgba(0,0,0,0.12)]">{tech.icon}</span>
+                        used.length > 0 ? (
+                          // foto gagal → tampilkan bahan yang dipakai di langkah ini
+                          <span className="absolute inset-0 flex items-center justify-center gap-1 px-3">
+                            {used.map((p) => (
+                              <img key={p.id} src={p.img} alt="" className="h-[62%] min-w-0 object-contain drop-shadow-[0_6px_5px_rgba(0,0,0,0.18)]" />
+                            ))}
+                          </span>
+                        ) : (
+                          <span className="absolute inset-0 grid place-items-center text-[24px] font-bold text-[#4b6b40]/55">{tech.label}</span>
+                        )
                       }
                     />
                     <span className="absolute left-2 top-2 grid h-7 w-7 place-items-center rounded-full text-[14px] font-bold text-white shadow" style={{ background: GREEN }}>
@@ -264,8 +273,8 @@ export function RecipeView({ source }: { source: RecipeSource }) {
 
       {/* tanda matang & penyajian */}
       <div className="mx-4 mt-4 grid gap-2.5">
-        <Callout icon="✅" title="Tanda Matang" text={m.resep.tandaMatang} />
-        <Callout icon="🍽️" title="Penyajian" text={m.resep.penyajian} />
+        <Callout title="Tanda matang" text={m.resep.tandaMatang} />
+        <Callout title="Penyajian" text={m.resep.penyajian} />
       </div>
 
       <Nutrition m={m} />
@@ -354,10 +363,9 @@ function Panel({ title, children }: { title: string; children: React.ReactNode }
   );
 }
 
-function Callout({ icon, title, text }: { icon: string; title: string; text: string }) {
+function Callout({ title, text }: { title: string; text: string }) {
   return (
-    <div className="flex gap-3 rounded-[14px] bg-white p-3.5 ring-1 ring-[#d5e4cd]">
-      <span className="text-[24px] leading-none">{icon}</span>
+    <div className="rounded-[14px] border-l-[4px] bg-white p-3.5 ring-1 ring-[#d5e4cd]" style={{ borderLeftColor: GREEN }}>
       <div>
         <p className="text-[13px] font-bold uppercase tracking-wide" style={{ color: GREEN }}>{title}</p>
         <p className="mt-0.5 text-[15px] leading-snug">{text}</p>

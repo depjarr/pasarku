@@ -10,6 +10,8 @@ import { QtyControl } from "@/components/QtyControl";
 import { useCart, useCartLines } from "@/lib/cart";
 import { productById, products, rupiah, sections, type Product } from "@/lib/data";
 import { AppLogo } from "@/components/AppLogo";
+import { WebPhoto } from "@/components/WebPhoto";
+import { useCookbook } from "@/lib/cookbook";
 import { IntroButton } from "@/components/Onboarding";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { useProductSheet } from "@/lib/productSheet";
@@ -37,24 +39,7 @@ const IN_SEASON = ["rambutan", "durian", "manggis", "mangga", "salak", "buah-nag
 
 const img = (id: string) => productById[id]?.img;
 
-/* ───────────── ikon kecil ───────────── */
-
-const Ico = ({ d, className = "h-5 w-5" }: { d: React.ReactNode; className?: string }) => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden>
-    {d}
-  </svg>
-);
-const LeafI = (p: { className?: string }) => <Ico {...p} d={<><path d="M5 19c0-8 5-13 14-14-1 9-6 14-14 14Z" /><path d="M5 19 13 11" /></>} />;
-const TagI = (p: { className?: string }) => <Ico {...p} d={<><path d="M3 12V4h8l10 10-8 8L3 12Z" /><circle cx="7.5" cy="8.5" r="1.3" /></>} />;
-const HeartI = (p: { className?: string }) => <Ico {...p} d={<path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z" />} />;
 const SparkI = (p: { className?: string }) => <SparklesIcon className={p.className ?? "h-5 w-5"} />;
-
-const FEATURES = [
-  { Icon: LeafI, title: "Bahan Segar", text: "Sayur, buah, daging & ikan pilihan setiap hari" },
-  { Icon: TagI, title: "Harga Pasar", text: "Harga mengikuti rata-rata supermarket Indonesia" },
-  { Icon: SparkI, title: "Resep dari AI", text: "Isi keranjang langsung jadi menu & resep lengkap" },
-  { Icon: HeartI, title: "Info Gizi Lengkap", text: "Kalori, protein, vitamin & skor kesehatan" },
-];
 
 /* ───────────── halaman ───────────── */
 
@@ -174,7 +159,7 @@ export default function Home() {
           <div className="hidden gap-4 px-8 pt-8 md:grid md:grid-cols-[1.5fr_1fr] xl:px-10">
             <Link href="/section/buah" className="relative overflow-hidden rounded-[22px] bg-[#1f4d2c] p-6 text-white">
               <p className="text-[14px] font-semibold text-[#a7e0b0]">Lagi musim</p>
-              <p className="mt-1 text-[28px] font-extrabold leading-tight">Buah Tropis<br /><span className="text-[#9ee6a8]">Akhir Tahun</span></p>
+              <p className="mt-1 text-[28px] font-extrabold leading-tight">Buah tropis<br />akhir tahun</p>
               <p className="mt-2 max-w-[220px] text-[13px] text-white/80">Rambutan, durian, manggis & mangga lagi manis-manisnya.</p>
               <span className="mt-4 inline-block rounded-full bg-[#34c759] px-4 py-2 text-[13px] font-bold">Belanja Buah</span>
               <div className="absolute -bottom-2 right-2 flex items-end">
@@ -197,17 +182,8 @@ export default function Home() {
             {IN_SEASON.map((id) => productById[id] && <ProductCard key={id} p={productById[id]} />)}
           </div>
 
-          {/* ───── kenapa PasarKu ───── */}
-          <SectionTitle title="Kenapa PasarKu?" />
-          <div className="grid grid-cols-2 gap-3 px-4 md:grid-cols-4 md:px-8 xl:px-10">
-            {FEATURES.map(({ Icon, title, text }) => (
-              <div key={title} className="rounded-[18px] bg-white p-4 shadow-[0_1px_2px_rgba(0,0,0,0.04)]">
-                <span className="grid h-10 w-10 place-items-center rounded-full bg-[#e8f5e2] text-[#1f7a3d]"><Icon className="h-5 w-5" /></span>
-                <p className="mt-2 text-[15px] font-bold">{title}</p>
-                <p className="mt-0.5 text-[12px] leading-snug text-secondary">{text}</p>
-              </div>
-            ))}
-          </div>
+          {/* ───── masak lagi dari rantang / cara pakai ───── */}
+          <FromRantang />
 
           <Footer />
         </>
@@ -247,13 +223,13 @@ function HeroMobile() {
 
 function HeroDesktop() {
   return (
-    <section className="mx-8 mt-2 hidden overflow-hidden rounded-[28px] bg-gradient-to-br from-[#f3f9ef] via-[#eef6e9] to-[#e2f0da] md:block xl:mx-10 xl:mt-6">
+    <section className="mx-8 mt-2 hidden overflow-hidden rounded-[28px] bg-[#eef6e9] md:block xl:mx-10 xl:mt-6">
       <div className="grid grid-cols-[1.05fr_1fr] items-center gap-4 px-8 pt-8 xl:px-10 xl:pt-10">
         <div>
           <p className="text-[15px] font-semibold text-[#2f8a45]">Segar setiap hari</p>
           <h1 className="mt-3 text-[34px] font-extrabold leading-[1.05] tracking-tight xl:text-[44px]">
-            Bahan Segar,<br />
-            <span className="text-[#2f8a45]">Hidup Lebih Sehat</span>
+            Belanja ke pasar,<br />
+            pulang bawa resep.
           </h1>
           <p className="mt-4 max-w-[400px] text-[15px] leading-relaxed text-[#3c3c43]">
             Belanja sayur, buah, daging, ikan & bumbu segar — lalu biarkan Dapur AI meracik menu, resep, dan info gizinya untukmu.
@@ -268,32 +244,85 @@ function HeroDesktop() {
           </div>
         </div>
         <div className="relative">
-          <span className="absolute left-2 top-4 z-10 grid h-[92px] w-[92px] place-items-center rounded-full bg-[#1f4d2c] text-center text-white shadow-xl">
-            <span className="leading-tight">
-              <span className="block text-[26px] font-extrabold">{products.length}</span>
-              <span className="block text-[12px] font-medium text-[#a7e0b0]">produk</span>
-            </span>
-          </span>
+          <PriceTag id="cabai-merah" />
           <BasketArt images={HERO_BASKET.map(img).filter(Boolean) as string[]} className="ml-auto w-[300px] max-w-full xl:w-[380px]" />
         </div>
       </div>
-      {/* baris keunggulan */}
-      <div className="mt-2 grid grid-cols-4 gap-2 border-t border-[#1f4d2c]/10 bg-white/50 px-8 py-4 xl:px-10">
-        {FEATURES.map(({ Icon, title, text }) => (
-          <div key={title} className="flex items-center gap-2.5">
-            <Icon className="h-6 w-6 shrink-0 text-[#2f8a45]" />
-            <span className="leading-tight">
-              <span className="block text-[13px] font-bold">{title}</span>
-              <span className="block text-[11px] text-secondary">{text.split(" ").slice(0, 4).join(" ")}</span>
-            </span>
-          </div>
-        ))}
-      </div>
+      <div className="h-6" />
     </section>
   );
 }
 
 /* ───────────── komponen kecil ───────────── */
+
+/** Label harga kertas ala lapak pasar, menggantung di samping keranjang. */
+function PriceTag({ id }: { id: string }) {
+  const p = productById[id];
+  if (!p) return null;
+  return (
+    <div className="absolute left-0 top-0 z-10 origin-top -rotate-6">
+      <svg viewBox="0 0 40 30" className="mx-auto h-[30px] w-[40px]" aria-hidden>
+        <path d="M20 0 C18 10 22 18 20 30" stroke="#9a8a5a" strokeWidth="1.6" fill="none" />
+      </svg>
+      <div className="relative rounded-[10px] bg-[#fff8dc] px-4 pb-3 pt-4 shadow-[0_10px_20px_-10px_rgba(0,0,0,0.4)] ring-1 ring-[#e7d9a2]">
+        <span className="absolute left-1/2 top-1.5 h-2.5 w-2.5 -translate-x-1/2 rounded-full bg-[#eef6e9] ring-1 ring-[#d4c58c]" />
+        <p className="text-[12px] font-medium text-[#8a6a1a]">Harga hari ini</p>
+        <p className="text-[15px] font-bold text-[#3a2a05]">{p.name}</p>
+        <p className="text-[22px] font-extrabold leading-tight tabular-nums text-[#c8321e]">{rupiah(p.price)}</p>
+        <p className="text-[12px] text-[#6b5a2a]">per {p.unit}</p>
+      </div>
+    </div>
+  );
+}
+
+/** Beranda bagian bawah: resep terakhir dari rantang, atau cara pakai singkat kalau rantang masih kosong. */
+function FromRantang() {
+  const hydrated = useHydrated();
+  const items = useCookbook((s) => s.items);
+  const recent = hydrated ? items.slice(0, 4) : [];
+
+  if (recent.length > 0)
+    return (
+      <>
+        <SectionTitle title="Masak lagi dari rantang" link={{ href: "/resep-saya", label: "Buka rantang" }} />
+        <div className="no-scrollbar flex gap-3 overflow-x-auto px-4 pb-1 md:grid md:grid-cols-4 md:overflow-visible md:px-8 xl:px-10">
+          {recent.map((r) => (
+            <Link key={r.id} href={`/resep-saya/${r.id}`} className="w-[200px] shrink-0 overflow-hidden rounded-[16px] bg-white active:opacity-70 md:w-auto">
+              <div className="relative h-[110px] bg-[#eef4ea]">
+                <WebPhoto query={r.menu.kataKunciFoto ?? r.menu.nama} className="h-full w-full" fallback={null} />
+              </div>
+              <div className="p-3">
+                <p className="line-clamp-2 text-[15px] font-semibold leading-tight">{r.menu.nama}</p>
+                <p className="mt-1 text-[12px] text-secondary">{r.menu.porsi} porsi, {r.menu.waktuMasakMenit} menit</p>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </>
+    );
+
+  const steps = [
+    { title: "Pilih bahan", text: "Keliling section dan masukkan bahan ke keranjang." },
+    { title: "Racik di Menu AI", text: "Tentukan untuk berapa orang, AI menyusun menu dan resepnya." },
+    { title: "Simpan di rantang", text: "Semua resep tersimpan otomatis untuk dimasak lagi." },
+  ];
+  return (
+    <>
+      <SectionTitle title="Cara belanja di PasarKu" />
+      <ol className="mx-4 grid gap-2 md:mx-8 md:grid-cols-3 xl:mx-10">
+        {steps.map((st, i) => (
+          <li key={st.title} className="flex gap-3 rounded-[16px] bg-white p-4">
+            <span className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-[#1f4d2c] text-[14px] font-bold text-white">{i + 1}</span>
+            <span>
+              <span className="block text-[15px] font-semibold">{st.title}</span>
+              <span className="mt-0.5 block text-[13px] leading-snug text-secondary">{st.text}</span>
+            </span>
+          </li>
+        ))}
+      </ol>
+    </>
+  );
+}
 
 function SectionTitle({ title, id, link }: { title: string; id?: string; link?: { href: string; label: string } }) {
   return (
@@ -334,7 +363,7 @@ function Footer() {
       <div className="grid grid-cols-[1.4fr_1fr_1fr] gap-8">
         <div>
           <p className="flex items-center gap-2 text-[20px] font-bold">
-            <span className="grid h-9 w-9 place-items-center rounded-[11px] bg-white/15"><BasketIcon className="h-5 w-5" /></span>
+            <AppLogo size={36} />
             PasarKu
           </p>
           <p className="mt-3 max-w-[300px] text-[13px] leading-relaxed text-white/75">
@@ -354,7 +383,7 @@ function Footer() {
           <ul className="mt-3 space-y-1.5 text-[13px] text-white/80">
             <li><Link href="/keranjang" className="hover:text-white">Keranjang</Link></li>
             <li><Link href="/rekomendasi" className="hover:text-white">Rekomendasi Menu AI</Link></li>
-            <li>Resep & Info Gizi</li>
+            <li><Link href="/resep-saya" className="hover:text-white">Rantang Resep</Link></li>
           </ul>
         </div>
       </div>
