@@ -12,6 +12,7 @@ import { products, rupiah, sections } from "@/lib/data";
 import { useHydrated } from "@/lib/useHydrated";
 import { BasketIcon, PrimaryButton, SparklesIcon, Stepper, StoreIcon } from "./ios";
 import { ProductImage } from "./ProductImage";
+import { IntroButton } from "./Onboarding";
 import { ThemeToggle } from "./ThemeToggle";
 
 export function Sidebar() {
@@ -84,7 +85,8 @@ function SidebarView({ path }: { path: string }) {
         </div>
       </nav>
 
-      <div className="px-3 pb-1">
+      <div className="space-y-0.5 px-3 pb-1">
+        <IntroButton withLabel className="w-full rounded-[7px] px-2.5 py-[6px] text-[14px] text-label hover:bg-black/[0.04]" />
         <ThemeToggle withLabel className="w-full rounded-[7px] px-2.5 py-[6px] text-[14px] text-label hover:bg-black/[0.04]" />
       </div>
       <p className="px-5 pb-4 pt-1 text-[11px] leading-snug text-secondary">Menu & resep dibuat oleh AI dari isi keranjang.</p>

@@ -9,6 +9,7 @@ import { ProductImage } from "@/components/ProductImage";
 import { QtyControl } from "@/components/QtyControl";
 import { useCart, useCartLines } from "@/lib/cart";
 import { productById, products, rupiah, sections, type Product } from "@/lib/data";
+import { IntroButton } from "@/components/Onboarding";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { useProductSheet } from "@/lib/productSheet";
 import { useHydrated } from "@/lib/useHydrated";
@@ -100,6 +101,7 @@ export default function Home() {
             </span>
           </Link>
           <div className="flex items-center gap-2">
+          <IntroButton className="grid h-10 w-10 place-items-center rounded-full bg-white text-label shadow-sm ring-1 ring-black/[0.04] active:opacity-60" />
           <ThemeToggle className="grid h-10 w-10 place-items-center rounded-full bg-white text-label shadow-sm ring-1 ring-black/[0.04] active:opacity-60" />
           <button onClick={() => setDrawer(true)} aria-label="Buka keranjang" className="relative grid h-10 w-10 place-items-center rounded-full bg-white shadow-sm ring-1 ring-black/[0.04] active:opacity-60">
             <BasketIcon className="h-[22px] w-[22px] text-label" />
