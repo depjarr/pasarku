@@ -2,7 +2,7 @@
 
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { CheckIcon, ChefIcon, ChevronRight, ClockIcon, FlameIcon, Group, NavBar, PeopleIcon, PrimaryButton, SparklesIcon } from "@/components/ios";
 import { useCart, useCartLines } from "@/lib/cart";
 import { CookingLoader } from "@/components/CookingLoader";
@@ -59,6 +59,17 @@ export default function RecommendationPage() {
     useCart.getState().clear();
   }, [hydrated, result, hasItems, key, orang, tujuan]);
 
+  // Saat Menu AI dibuka: menu sebelumnya sudah tersimpan di rantang & keranjang sudah diisi bahan baru
+  // → langsung siapkan racikan baru (layar pilih jumlah orang), tidak perlu menekan "Racik Ulang".
+  const checkedNewCart = useRef(false);
+  useEffect(() => {
+    if (!hydrated || checkedNewCart.current) return;
+    checkedNewCart.current = true;
+    const recs = useRecs.getState();
+    if (recs.result && recs.consumedKey === recs.result.key && hasItems && recs.result.key !== key) recs.setResult(null);
+  }, [hydrated, hasItems, key]);
+  const consumed = !!result && useRecs.getState().consumedKey === result.key;
+
   const retry = () => {
     useRecs.getState().setConsumedKey(null);
     setError(null);
@@ -109,8 +120,12 @@ export default function RecommendationPage() {
           {!hasItems && result && <SavedNotice cartKey={result.key} />}
           {stale && hasItems && (
             <div className="mx-4 mt-3 flex items-center justify-between gap-3 rounded-[12px] bg-[#fff6e0] p-3.5 md:mx-8">
-              <p className="text-[13px] leading-snug text-[#6b4a00]">Isi keranjang berubah sejak menu ini diracik.</p>
-              <button onClick={restart} className="shrink-0 rounded-full bg-[#1f4d2c] px-3.5 py-1.5 text-[13px] font-semibold text-white">Racik ulang</button>
+              <p className="text-[13px] leading-snug text-[#6b4a00]">
+                {consumed ? "Menu ini sudah tersimpan di rantang. Ada bahan baru di keranjang." : "Isi keranjang berubah sejak menu ini diracik."}
+              </p>
+              <button onClick={restart} className="shrink-0 rounded-full bg-[#1f4d2c] px-3.5 py-1.5 text-[13px] font-semibold text-white">
+                {consumed ? "Racik menu baru" : "Racik ulang"}
+              </button>
             </div>
           )}
           <Content data={data} />
