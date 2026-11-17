@@ -10,7 +10,8 @@ import { Suspense } from "react";
 import { useCart, useCartLines } from "@/lib/cart";
 import { products, rupiah, sections } from "@/lib/data";
 import { useHydrated } from "@/lib/useHydrated";
-import { BasketIcon, PrimaryButton, SparklesIcon, Stepper, StoreIcon } from "./ios";
+import { useCookbook } from "@/lib/cookbook";
+import { BasketIcon, PrimaryButton, RantangIcon, SparklesIcon, Stepper, StoreIcon } from "./ios";
 import { ProductImage } from "./ProductImage";
 import { AppLogo } from "./AppLogo";
 import { IntroButton } from "./Onboarding";
@@ -32,11 +33,13 @@ function SidebarView({ path }: { path: string }) {
   const hydrated = useHydrated();
   const items = useCart((s) => s.items);
   const { count } = useCartLines();
+  const saved = useCookbook((s) => s.items.length);
 
   const main = [
     { href: "/", label: "Toko", Icon: StoreIcon, active: path === "/" },
     { href: "/keranjang", label: "Keranjang", Icon: BasketIcon, active: path === "/keranjang", badge: hydrated ? count : 0 },
-    { href: "/rekomendasi", label: "Menu AI", Icon: SparklesIcon, active: path.startsWith("/rekomendasi") || path.startsWith("/resep") },
+    { href: "/rekomendasi", label: "Menu AI", Icon: SparklesIcon, active: path.startsWith("/rekomendasi") || path.startsWith("/resep/") },
+    { href: "/resep-saya", label: "Rantang Resep", Icon: RantangIcon, active: path.startsWith("/resep-saya"), badge: hydrated ? saved : 0 },
   ];
 
   const item = (active: boolean) =>

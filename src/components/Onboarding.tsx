@@ -71,7 +71,7 @@ const SLIDES = [
   {
     kicker: "Langkah 3",
     title: "Racik menu dengan AI",
-    text: "Buka Menu AI, pilih untuk berapa orang. AI memberi beberapa menu lengkap dengan resep langkah demi langkah, info gizi, dan saran bahan yang kurang.",
+    text: "Buka Menu AI, pilih untuk berapa orang. AI memberi beberapa menu lengkap dengan resep langkah demi langkah dan info gizi. Semua resepnya otomatis tersimpan di Rantang Resep.",
     Art: AiArt,
   },
 ] as const;

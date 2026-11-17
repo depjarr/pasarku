@@ -44,6 +44,15 @@ export const SparklesIcon = svg(
     <path d="M18.5 3v4M16.5 5h4M19 16v3M17.5 17.5h3" />
   </>,
 );
+/** Rantang bersusun — ikon koleksi resep */
+export const RantangIcon = svg(
+  <>
+    <path d="M7 6.5V5a5 2.2 0 0 1 10 0v1.5" />
+    <rect x="4.5" y="6.5" width="15" height="4.5" rx="1.6" />
+    <rect x="4.5" y="11" width="15" height="4.5" rx="1.6" />
+    <rect x="4.5" y="15.5" width="15" height="4.5" rx="1.6" />
+  </>,
+);
 export const SearchIcon = svg(<><circle cx="11" cy="11" r="6.5" /><path d="m20 20-4.2-4.2" /></>);
 export const XIcon = svg(<path d="M6 6l12 12M18 6 6 18" />);
 export const CheckIcon = svg(<path d="m5 12.5 4.5 4.5L19 7" strokeWidth={2.6} />);
@@ -132,13 +141,14 @@ function TabBarView({ path }: { path: string }) {
   const tabs = [
     { href: "/", label: "Toko", Icon: StoreIcon, active: path === "/" || path.startsWith("/section") },
     { href: "/keranjang", label: "Keranjang", Icon: BasketIcon, active: path === "/keranjang", badge: hydrated ? count : 0 },
-    { href: "/rekomendasi", label: "Menu AI", Icon: SparklesIcon, active: path.startsWith("/rekomendasi") || path.startsWith("/resep") },
+    { href: "/rekomendasi", label: "Menu AI", Icon: SparklesIcon, active: path.startsWith("/rekomendasi") || path.startsWith("/resep/") },
+    { href: "/resep-saya", label: "Rantang", Icon: RantangIcon, active: path.startsWith("/resep-saya") },
   ];
 
   return (
     // HP: bar penuh di bawah (iOS). Tablet: pil melayang (iPadOS). Laptop: disembunyikan (ada sidebar).
     <nav className="ios-material fixed inset-x-0 bottom-0 z-40 border-t border-separator pb-[max(env(safe-area-inset-bottom),8px)] md:inset-x-auto md:bottom-6 md:left-1/2 md:-translate-x-1/2 md:rounded-full md:border md:border-black/[0.06] md:p-1.5 md:shadow-[0_10px_30px_rgba(0,0,0,0.14)] xl:hidden">
-      <div className="mx-auto grid max-w-md grid-cols-3 md:flex md:max-w-none md:gap-1">
+      <div className="mx-auto grid max-w-md grid-cols-4 md:flex md:max-w-none md:gap-1">
         {tabs.map(({ href, label, Icon, active, badge }) => (
           <Link
             key={href}

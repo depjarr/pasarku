@@ -2,12 +2,14 @@
 
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { ChefIcon, ClockIcon, FlameIcon, NavBar, PeopleIcon } from "@/components/ios";
 import { RecipeActions } from "@/components/RecipeActions";
 import { SuggestionList } from "@/components/Suggestions";
 import { WebPhoto } from "@/components/WebPhoto";
 import { productById } from "@/lib/data";
+import { useCookbook } from "@/lib/cookbook";
 import { useRecs } from "@/lib/recs";
 import type { Menu, Technique } from "@/lib/schema";
 import { useHydrated } from "@/lib/useHydrated";
@@ -41,11 +43,37 @@ const GREEN = "#2f6b2a";
 
 type StoredMenu = Menu & { detailOk?: boolean };
 
+/** Resep dibuka dari hasil AI terakhir (nomor menu) atau dari Rantang Resep (id simpanan). */
+export type RecipeSource = { kind: "rec"; index: number } | { kind: "saved"; id: string };
+
+/** Ambil menu sesuai sumbernya + cara menyimpan resep detail kembali ke tempat asalnya. */
+function useMenu(source: RecipeSource) {
+  const fromRec = useRecs((s) => (source.kind === "rec" ? s.result?.data.menus[source.index] : undefined)) as StoredMenu | undefined;
+  const saved = useCookbook((s) => (source.kind === "saved" ? s.items.find((x) => x.id === source.id) : undefined));
+  const m = source.kind === "rec" ? fromRec : saved?.menu;
+
+  const save = (resep: Menu["resep"]) => {
+    const cook = useCookbook.getState();
+    if (source.kind === "saved") {
+      const cur = cook.items.find((x) => x.id === source.id);
+      if (cur) cook.updateMenu({ id: source.id }, { ...cur.menu, resep, detailOk: true });
+      return;
+    }
+    const { result, setResult } = useRecs.getState();
+    if (!result) return;
+    const menus = result.data.menus.map((x, i) => (i === source.index ? ({ ...x, resep, detailOk: true } as StoredMenu) : x));
+    setResult({ ...result, data: { ...result.data, menus } });
+    // salinan di Rantang Resep ikut diperbarui
+    cook.updateMenu({ src: `${result.key}#${source.index}` }, menus[source.index]);
+  };
+  return { m, save, savedAt: saved?.savedAt };
+}
+
 /**
  * Saat halaman resep dibuka pertama kali, minta resep DETAIL (8-12 langkah) untuk menu ini
  * ke /api/resep memakai bahan & takaran yang sama, lalu simpan supaya tidak diminta ulang.
  */
-function useDetailedRecipe(index: number, m: StoredMenu | undefined) {
+function useDetailedRecipe(key: string, m: StoredMenu | undefined, save: (r: Menu["resep"]) => void) {
   const [state, setState] = useState<"idle" | "loading" | "error">("idle");
   const [attempt, setAttempt] = useState(0);
   const needs = !!m && !m.detailOk;
@@ -69,34 +97,36 @@ function useDetailedRecipe(index: number, m: StoredMenu | undefined) {
       .then(async (r) => {
         const json = await r.json();
         if (!r.ok) throw new Error(json.error ?? "Gagal");
-        const { result, setResult } = useRecs.getState();
-        if (!result) return;
-        const menus = result.data.menus.map((x, i) => (i === index ? ({ ...x, resep: json as Menu["resep"], detailOk: true } as StoredMenu) : x));
-        setResult({ ...result, data: { ...result.data, menus } });
+        save(json as Menu["resep"]);
         setState("idle");
       })
       .catch((e) => e.name !== "AbortError" && setState("error"));
     return () => ctrl.abort();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [needs, index, attempt]);
+  }, [needs, key, attempt]);
 
   return { state: needs ? state : "idle", retry: () => setAttempt((a) => a + 1) };
 }
 
-export function RecipeView({ index }: { index: number }) {
+export function RecipeView({ source }: { source: RecipeSource }) {
   const hydrated = useHydrated();
-  const m = useRecs((s) => s.result?.data.menus[index]) as StoredMenu | undefined;
-  const detail = useDetailedRecipe(index, hydrated ? m : undefined);
+  const router = useRouter();
+  const { m, save, savedAt } = useMenu(source);
+  const key = source.kind === "rec" ? `rec-${source.index}` : source.id;
+  const detail = useDetailedRecipe(key, hydrated ? m : undefined, save);
+  const back = source.kind === "rec" ? { href: "/rekomendasi", label: "Menu AI" } : { href: "/resep-saya", label: "Rantang" };
 
   if (!hydrated) return <div className="flex-1" />;
   if (!m)
     return (
       <main className="pb-tabbar flex-1">
-        <NavBar title="Resep" large={false} back={{ href: "/rekomendasi", label: "Menu AI" }} />
+        <NavBar title="Resep" large={false} back={back} />
         <div className="px-8 pt-24 text-center">
           <p className="text-[20px] font-semibold">Resep tidak ditemukan</p>
-          <p className="mt-1 text-[15px] text-secondary">Minta rekomendasi menu dulu dari keranjangmu.</p>
-          <Link href="/rekomendasi" className="mt-5 inline-block text-[17px] text-ios-blue">Buka Menu AI</Link>
+          <p className="mt-1 text-[15px] text-secondary">
+            {source.kind === "rec" ? "Minta rekomendasi menu dulu dari keranjangmu." : "Resep ini mungkin sudah dihapus dari rantang."}
+          </p>
+          <Link href={back.href} className="mt-5 inline-block text-[17px] text-ios-blue">Buka {back.label}</Link>
         </div>
       </main>
     );
@@ -105,7 +135,7 @@ export function RecipeView({ index }: { index: number }) {
   const startAt = m.resep.tahapan.map((_, ti) => m.resep.tahapan.slice(0, ti).reduce((a, t) => a + t.langkah.length, 0));
   return (
     <main className="pb-tabbar animate-push flex-1 bg-[#eef4ea]">
-      <NavBar title={m.nama} large={false} back={{ href: "/rekomendasi", label: "Menu AI" }} />
+      <NavBar title={m.nama} large={false} back={back} />
 
       {/* HP: 1 kolom · Tablet (md): 1 kolom lebih lebar · iPad landscape & layar sangat lebar: bahan kiri, langkah kanan */}
       <div id="resep-isi" className="mx-auto w-full max-w-[1180px] bg-[#eef4ea] pb-4 md:px-4 lg:grid lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-start xl:block 2xl:grid">
@@ -250,7 +280,22 @@ export function RecipeView({ index }: { index: number }) {
 
       <p className="mx-6 mt-6 text-center text-[12px] text-secondary">
         Resep dan nilai gizi disusun AI PasarKu dari isi keranjangmu.
+        {savedAt && <> Disimpan di rantang {new Date(savedAt).toLocaleDateString("id-ID", { day: "numeric", month: "long", year: "numeric" })}.</>}
       </p>
+      {source.kind === "saved" && (
+        <div className="mx-auto mt-4 max-w-[320px] px-4 pb-4">
+          <button
+            onClick={() => {
+              if (!confirm(`Hapus "${m.nama}" dari rantang? Resep ini tidak bisa dikembalikan.`)) return;
+              useCookbook.getState().remove(source.id);
+              router.replace("/resep-saya");
+            }}
+            className="h-11 w-full rounded-[12px] bg-white text-[16px] font-semibold text-ios-red active:opacity-60"
+          >
+            Hapus dari rantang
+          </button>
+        </div>
+      )}
     </main>
   );
 }
