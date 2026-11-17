@@ -3,6 +3,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { productById, type Product } from "./data";
+import { usePriceOf } from "./harga";
 
 type CartState = {
   items: Record<string, number>; // productId -> qty
@@ -40,9 +41,13 @@ export type CartLine = Product & { qty: number; subtotal: number };
 
 export function useCartLines() {
   const items = useCart((s) => s.items);
+  const priceOf = usePriceOf();
   const lines: CartLine[] = Object.entries(items)
     .filter(([id]) => productById[id])
-    .map(([id, qty]) => ({ ...productById[id], qty, subtotal: productById[id].price * qty }));
+    .map(([id, qty]) => {
+      const price = priceOf(productById[id]);
+      return { ...productById[id], price, qty, subtotal: price * qty };
+    });
   const total = lines.reduce((a, l) => a + l.subtotal, 0);
   const count = lines.reduce((a, l) => a + l.qty, 0);
   return { lines, total, count };

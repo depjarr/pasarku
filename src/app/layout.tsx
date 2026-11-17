@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { CartSheet } from "@/components/CartSheet";
+import { HargaSync } from "@/components/HargaSync";
 import { Onboarding } from "@/components/Onboarding";
 import { ProductSheet } from "@/components/ProductSheet";
 import { CartPanel, Sidebar } from "@/components/desktop";
@@ -54,6 +55,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <CartSheet />
         <ProductSheet />
         <Onboarding />
+        <HargaSync />
       </body>
     </html>
   );

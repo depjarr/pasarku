@@ -12,6 +12,7 @@ import { productById, products, rupiah, sections, type Product } from "@/lib/dat
 import { AppLogo } from "@/components/AppLogo";
 import { WebPhoto } from "@/components/WebPhoto";
 import { useCookbook } from "@/lib/cookbook";
+import { useLivePrice, usePriceOf } from "@/lib/harga";
 import { IntroButton } from "@/components/Onboarding";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { useProductSheet } from "@/lib/productSheet";
@@ -50,6 +51,7 @@ export default function Home() {
   const { count } = useCartLines();
   const [q, setQ] = useState("");
   const openProduct = useProductSheet((s) => s.open);
+  const priceOf = usePriceOf();
 
   const inCart = (sectionId: string) =>
     hydrated ? products.filter((p) => p.sectionId === sectionId).reduce((a, p) => a + (items[p.id] ?? 0), 0) : 0;
@@ -114,7 +116,7 @@ export default function Home() {
                 trailing={<ChevronRight className="h-4 w-4 text-tertiary" />}
               >
                 <p className="truncate text-[17px]">{p.name}</p>
-                <p className="text-[13px] text-secondary">{rupiah(p.price)} per {p.unit}, di {sections.find((s) => s.id === p.sectionId)?.name}</p>
+                <p className="text-[13px] text-secondary">{rupiah(priceOf(p))} per {p.unit}, di {sections.find((s) => s.id === p.sectionId)?.name}</p>
               </Cell>
             ))
           )}
@@ -258,6 +260,7 @@ function HeroDesktop() {
 /** Label harga kertas ala lapak pasar, menggantung di samping keranjang. */
 function PriceTag({ id }: { id: string }) {
   const p = productById[id];
+  const live = useLivePrice(id);
   if (!p) return null;
   return (
     <div className="absolute left-0 top-0 z-10 origin-top -rotate-6">
@@ -266,9 +269,9 @@ function PriceTag({ id }: { id: string }) {
       </svg>
       <div className="relative rounded-[10px] bg-[#fff8dc] px-4 pb-3 pt-4 shadow-[0_10px_20px_-10px_rgba(0,0,0,0.4)] ring-1 ring-[#e7d9a2]">
         <span className="absolute left-1/2 top-1.5 h-2.5 w-2.5 -translate-x-1/2 rounded-full bg-[#eef6e9] ring-1 ring-[#d4c58c]" />
-        <p className="text-[12px] font-medium text-[#8a6a1a]">Harga hari ini</p>
+        <p className="text-[12px] font-medium text-[#8a6a1a]">{live ? "Harga hari ini" : "Harga perkiraan"}</p>
         <p className="text-[15px] font-bold text-[#3a2a05]">{p.name}</p>
-        <p className="text-[22px] font-extrabold leading-tight tabular-nums text-[#c8321e]">{rupiah(p.price)}</p>
+        <p className="text-[22px] font-extrabold leading-tight tabular-nums text-[#c8321e]">{rupiah(live?.price ?? p.price)}</p>
         <p className="text-[12px] text-[#6b5a2a]">per {p.unit}</p>
       </div>
     </div>
@@ -339,6 +342,7 @@ function SectionTitle({ title, id, link }: { title: string; id?: string; link?: 
 
 function ProductCard({ p }: { p: Product }) {
   const hydrated = useHydrated();
+  const live = useLivePrice(p.id);
   const open = useProductSheet((s) => s.open);
   const qty = useCart((s) => s.items[p.id] ?? 0);
   return (
@@ -350,7 +354,7 @@ function ProductCard({ p }: { p: Product }) {
       <p className="mt-2 line-clamp-1 text-[14px] font-semibold">{p.name}</p>
       <p className="text-[12px] text-secondary">{p.unit}</p>
       <div className="mt-2 flex items-center justify-between">
-        <span className="text-[15px] font-bold tabular-nums">{rupiah(p.price)}</span>
+        <span className="text-[15px] font-bold tabular-nums">{rupiah(live?.price ?? p.price)}</span>
         <QtyControl id={p.id} qty={hydrated ? qty : 0} />
       </div>
     </div>
@@ -388,7 +392,7 @@ function Footer() {
         </div>
       </div>
       <p className="mt-8 border-t border-white/15 pt-4 text-[11px] text-white/55">
-        © 2026 PasarKu, proyek portofolio. Foto bahan: TheMealDB & Wikimedia Commons. Harga perkiraan rata-rata supermarket Indonesia.
+        © 2026 PasarKu, proyek portofolio. Foto bahan: TheMealDB & Wikimedia Commons. Harga bahan pokok (beras, bawang, cabai, daging, telur, gula, minyak, ikan) mengikuti Panel Harga Badan Pangan Nasional; bahan lain memakai harga perkiraan supermarket Indonesia.
       </p>
     </footer>
   );

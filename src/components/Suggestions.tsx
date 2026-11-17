@@ -1,6 +1,7 @@
 "use client";
 
 import { useCart } from "@/lib/cart";
+import { usePriceOf } from "@/lib/harga";
 import { productById, rupiah } from "@/lib/data";
 import { useProductSheet } from "@/lib/productSheet";
 import { useHydrated } from "@/lib/useHydrated";
@@ -14,6 +15,7 @@ export function SuggestionList({ items }: { items: Suggestion[] }) {
   const hydrated = useHydrated();
   const cart = useCart((s) => s.items);
   const open = useProductSheet((s) => s.open);
+  const priceOf = usePriceOf();
 
   return (
     <div className="divide-y divide-separator">
@@ -29,7 +31,7 @@ export function SuggestionList({ items }: { items: Suggestion[] }) {
               <p className="text-[15px] font-semibold leading-tight">{p.name}</p>
               <p className="mt-0.5 text-[13px] leading-snug text-[#3c5a40]">{s.alasan.charAt(0).toUpperCase() + s.alasan.slice(1)}</p>
               <p className="mt-0.5 text-[12px] text-secondary tabular-nums">
-                {rupiah(p.price)} per {p.unit}
+                {rupiah(priceOf(p))} per {p.unit}
                 {s.untuk && <>, untuk {s.untuk}</>}
               </p>
             </div>

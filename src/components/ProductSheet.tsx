@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { useCart } from "@/lib/cart";
 import { productById, rupiah, sections } from "@/lib/data";
 import { productInfo } from "@/lib/productInfo";
+import { useHarga, useLivePrice } from "@/lib/harga";
 import { useProductSheet } from "@/lib/productSheet";
 import { useHydrated } from "@/lib/useHydrated";
 import { CheckIcon, PrimaryButton, Stepper, XIcon } from "./ios";
@@ -25,6 +26,8 @@ export function ProductSheet() {
   const qty = useCart((s) => (id ? s.items[id] ?? 0 : 0));
   const add = useCart((s) => s.add);
   const remove = useCart((s) => s.remove);
+  const live = useLivePrice(id);
+  const tanggal = useHarga((s) => s.tanggal);
 
   useEffect(() => {
     if (!id) return;
@@ -68,8 +71,23 @@ export function ProductSheet() {
                 </p>
                 <h2 className="mt-0.5 text-[24px] font-bold leading-tight">{p.name}</h2>
                 <p className="mt-1 text-[15px] text-secondary">
-                  <span className="text-[20px] font-bold text-label tabular-nums">{rupiah(p.price)}</span> / {p.unit}
+                  <span className="text-[20px] font-bold text-label tabular-nums">{rupiah(live?.price ?? p.price)}</span> / {p.unit}
                 </p>
+                {live ? (
+                  <p className="mt-1.5 text-[13px] leading-snug text-secondary">
+                    Harga rata-rata nasional hari ini untuk {live.komoditas.toLowerCase()}: {rupiah(live.perUnit)} per {live.satuan}
+                    {live.change !== 0 && (
+                      <span className={live.change > 0 ? "text-ios-red" : "text-brand-ink"}>
+                        {", "}
+                        {live.change > 0 ? "naik" : "turun"} {Math.abs(live.change).toLocaleString("id-ID", { maximumFractionDigits: 2 })}% dari kemarin
+                      </span>
+                    )}
+                    . Sumber: Panel Harga Badan Pangan Nasional
+                    {tanggal && <>, diperbarui {new Date(tanggal).toLocaleDateString("id-ID", { day: "numeric", month: "long" })}</>}.
+                  </p>
+                ) : (
+                  <p className="mt-1.5 text-[13px] text-secondary">Harga perkiraan rata-rata supermarket di Indonesia.</p>
+                )}
 
                 {info ? (
                   <>
@@ -121,7 +139,7 @@ export function ProductSheet() {
                 <>
                   <div className="flex-1">
                     <p className="text-[13px] text-secondary">Di keranjang</p>
-                    <p className="text-[17px] font-bold tabular-nums">{rupiah(p.price * qty)}</p>
+                    <p className="text-[17px] font-bold tabular-nums">{rupiah((live?.price ?? p.price) * qty)}</p>
                   </div>
                   <Stepper value={qty} onMinus={() => remove(p.id)} onPlus={() => add(p.id)} />
                 </>

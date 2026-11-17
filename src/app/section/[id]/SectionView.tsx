@@ -9,6 +9,7 @@ import { QtyControl } from "@/components/QtyControl";
 import { useCart } from "@/lib/cart";
 import { products, rupiah, sections, type Product } from "@/lib/data";
 import { productInfo } from "@/lib/productInfo";
+import { useHarga, usePriceOf } from "@/lib/harga";
 import { useProductSheet } from "@/lib/productSheet";
 import { useHydrated } from "@/lib/useHydrated";
 
@@ -20,11 +21,11 @@ const SORTS: { value: Sort; label: string }[] = [
   { value: "kalori", label: "Kalori terendah" },
 ];
 
-function sortItems(items: Product[], sort: Sort) {
+function sortItems(items: Product[], sort: Sort, priceOf: (p: Product) => number) {
   if (sort === "default") return items;
   const g = (p: Product) => productInfo(p.id)?.gizi;
   const arr = [...items];
-  if (sort === "murah") arr.sort((a, b) => a.price - b.price);
+  if (sort === "murah") arr.sort((a, b) => priceOf(a) - priceOf(b));
   // produk tanpa data gizi diletakkan di belakang
   if (sort === "protein") arr.sort((a, b) => (g(b)?.protein ?? -1) - (g(a)?.protein ?? -1));
   if (sort === "kalori") arr.sort((a, b) => (g(a)?.kalori ?? 1e9) - (g(b)?.kalori ?? 1e9));
@@ -37,6 +38,7 @@ export function SectionView({ id }: { id: string }) {
   const [shelf, setShelf] = useState(section.shelves[0]);
   const [sort, setSort] = useState<Sort>("default");
 
+  const priceOf = usePriceOf();
   const jump = (name: string) => {
     setShelf(name);
     document.getElementById(`rak-${name}`)?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -69,7 +71,7 @@ export function SectionView({ id }: { id: string }) {
       </NavBar>
 
       {section.shelves.map((name) => (
-        <Shelf key={name} title={name} sort={sort} items={sortItems(products.filter((p) => p.sectionId === id && p.shelf === name), sort)} />
+        <Shelf key={name} title={name} sort={sort} items={sortItems(products.filter((p) => p.sectionId === id && p.shelf === name), sort, priceOf)} />
       ))}
 
       <Basket />
@@ -78,6 +80,10 @@ export function SectionView({ id }: { id: string }) {
 }
 
 function Shelf({ title, items, sort }: { title: string; items: Product[]; sort: Sort }) {
+  const hydrated = useHydrated();
+  const priceOf = usePriceOf();
+  const liveItems = useHarga((s) => s.items);
+  const liveIds = new Set(hydrated ? Object.keys(liveItems) : []);
   return (
     <section id={`rak-${title}`} className="mt-6 scroll-mt-14">
       <h2 className="flex items-baseline justify-between px-4 text-[20px] font-bold md:px-8 md:text-[22px]">
@@ -96,8 +102,12 @@ function Shelf({ title, items, sort }: { title: string; items: Product[]; sort: 
         <div className="flex w-max gap-3 px-4 pt-2 md:gap-5 md:px-8">
           {items.map((p) => (
             <div key={p.id} className="w-[104px] text-center md:w-[140px]">
-              <span className="price-tag inline-block rounded-[6px] bg-white px-2 py-0.5 text-[13px] font-semibold tabular-nums shadow-[0_1px_3px_rgba(0,0,0,0.12)]">
-                {rupiah(p.price)}
+              <span
+                title={liveIds.has(p.id) ? "Harga rata-rata nasional hari ini (Badan Pangan Nasional)" : "Harga perkiraan"}
+                className="price-tag inline-flex items-center gap-1 rounded-[6px] bg-white px-2 py-0.5 text-[13px] font-semibold tabular-nums shadow-[0_1px_3px_rgba(0,0,0,0.12)]"
+              >
+                {liveIds.has(p.id) && <span className="h-1.5 w-1.5 rounded-full bg-[#34c759]" aria-label="harga hari ini" />}
+                {rupiah(priceOf(p))}
               </span>
             </div>
           ))}
