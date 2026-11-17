@@ -42,23 +42,32 @@ export default function RecommendationPage() {
         const json = await r.json();
         if (!r.ok) throw new Error(json.error ?? "Terjadi kesalahan.");
         setResult({ key, data: json as Recommendation });
-        // otomatis masuk Rantang Resep
-        useCookbook.getState().addFromRecommendation(key, json as Recommendation, orang, tujuan);
-        // bahan sudah "dipakai" jadi resep → keranjang dikosongkan untuk belanja berikutnya
-        useCart.getState().clear();
       })
       .catch((e) => e.name !== "AbortError" && setError(e.message));
     return () => ctrl.abort();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [hydrated, key, attempt, !!data, confirmed]);
 
+  // Hasil menu tampil & isinya sama dengan keranjang → simpan ke Rantang Resep lalu kosongkan keranjang.
+  // Berlaku juga untuk hasil lama; cukup sekali per hasil (consumedKey) supaya "Kembalikan isi keranjang" tetap bisa dipakai.
+  useEffect(() => {
+    if (!hydrated || !result || !hasItems || result.key !== key) return;
+    const recs = useRecs.getState();
+    if (recs.consumedKey === result.key) return;
+    useCookbook.getState().addFromRecommendation(result.key, result.data, orang, tujuan);
+    recs.setConsumedKey(result.key);
+    useCart.getState().clear();
+  }, [hydrated, result, hasItems, key, orang, tujuan]);
+
   const retry = () => {
+    useRecs.getState().setConsumedKey(null);
     setError(null);
     setResult(null);
     setAttempt((a) => a + 1);
   };
   // "Racik Ulang": kembali ke layar pilih jumlah orang
   const restart = () => {
+    useRecs.getState().setConsumedKey(null);
     setError(null);
     setResult(null);
     setConfirmed(false);
@@ -233,6 +242,8 @@ function SavedNotice({ cartKey }: { cartKey: string }) {
   const restore = () => {
     try {
       const [entries] = JSON.parse(cartKey) as [[string, number][]];
+      // tandai hasil ini sudah dipakai supaya keranjang yang dikembalikan tidak langsung dikosongkan lagi
+      useRecs.getState().setConsumedKey(cartKey);
       useCart.getState().setItems(Object.fromEntries(entries));
     } catch {
       // kunci lama tidak terbaca → biarkan keranjang kosong

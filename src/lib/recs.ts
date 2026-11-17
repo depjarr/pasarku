@@ -21,6 +21,9 @@ type RecsState = {
   /** hasil AI terakhir + "sidik jari" keranjang & preferensi saat diminta */
   result: { key: string; data: Recommendation } | null;
   setResult: (r: { key: string; data: Recommendation } | null) => void;
+  /** kunci hasil yang bahannya sudah "dipakai" (keranjang sudah dikosongkan) — agar tidak dikosongkan dua kali */
+  consumedKey: string | null;
+  setConsumedKey: (k: string | null) => void;
 };
 
 /** Preferensi menu & hasil rekomendasi terakhir (agar halaman resep tidak perlu memanggil AI lagi). */
@@ -33,6 +36,8 @@ export const useRecs = create<RecsState>()(
       setTujuan: (tujuan) => set({ tujuan }),
       result: null,
       setResult: (result) => set({ result }),
+      consumedKey: null,
+      setConsumedKey: (consumedKey) => set({ consumedKey }),
     }),
     { name: "pasarku-ai" },
   ),
