@@ -11,6 +11,8 @@ import type { Recommendation } from "./schema";
 
 const ZERO_AMOUNT =
   /^\s*0+([.,]0+)?\s*(g|gr|gram|kg|ml|l|liter|buah|butir|siung|ekor|potong|lembar|sdm|sdt|batang|ikat|bungkus|papan)?\.?\s*$/i;
+/** bumbu dapur dasar yang dianggap selalu ada di rumah (boleh dipakai walau tidak dibeli) */
+const PANTRY = new Set(["garam", "gula-pasir", "minyak-goreng", "merica", "air"]);
 const ANIMAL_SECTIONS = new Set(["daging", "ikan"]);
 const ANIMAL_PRODUCTS = new Set(["telur-ayam", "telur-puyuh", "telur-asin", "susu", "susu-full", "keju", "parmesan", "mentega", "madu", "skm", "whipping-cream", "cream-cheese", "cokelat-putih", "karamel", "biskuit", "susu-bubuk", "yogurt", "es-krim", "butter-tawar", "butter-asin"]);
 const ANIMAL_WORDS = /\b(ikan|ayam|daging|sapi|kambing|domba|bebek|udang|cumi|kerang|tiram|teri|ebi|terasi|telur|susu|keju|mentega|madu|kaldu ayam|kaldu sapi)\b/i;
@@ -79,6 +81,14 @@ export function validateRecommendation(r: Recommendation, cartItems: Record<stri
   for (const m of r.menus) {
     const used = new Set(m.resep.kelompokBahan.flatMap((g) => g.bahan.map((b) => b.productId)).filter(Boolean));
     const name = m.nama.toLowerCase();
+
+    // bahan dari toko yang TIDAK dibeli user (selain bumbu dapur dasar) tidak boleh dipakai di resep
+    const notInCart = [...used].filter((id): id is string => !!id && !!productById[id] && !cartItems[id] && !PANTRY.has(id));
+    if (notInCart.length)
+      issues.push(
+        `Menu "${m.nama}" memakai bahan yang tidak ada di keranjang (${notInCart.map((id) => productById[id].name).join(", ")}). ` +
+          "Ganti dengan menu yang hanya memakai bahan keranjang + bumbu dapur dasar; bahan tambahan cukup ditulis di saranBahan.",
+      );
 
     // nama menu menyebut bahan keranjang yang tidak dipakai di menu itu
     for (const id of cartIds) {
