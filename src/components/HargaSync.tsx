@@ -6,7 +6,8 @@ import { fetchPanelPrices } from "@/lib/hargaPanel";
 
 /**
  * Mengambil harga pangan terbaru (Panel Harga Badan Pangan Nasional) paling lama tiap 6 jam.
- * Urutan: lewat server PasarKu (tersimpan di CDN) → bila gagal, langsung dari panel di browser.
+ * Urutan: langsung dari panel di browser (cepat, dan panel bisa diakses dari Indonesia)
+ * → bila gagal, lewat server PasarKu (/api/harga).
  * Tidak menampilkan apa pun; bila semuanya gagal, harga terakhir / harga perkiraan tetap dipakai.
  */
 export function HargaSync() {
@@ -21,16 +22,17 @@ export function HargaSync() {
 
     (async () => {
       try {
-        const r = await fetch("/api/harga", { signal: ctrl.signal });
-        const d = (await r.json()) as { tanggal?: string; items?: Record<string, LivePrice> };
-        if (r.ok && d.items && Object.keys(d.items).length > 0) return save(d.items, d.tanggal);
+        return save(await fetchPanelPrices(AbortSignal.any([ctrl.signal, AbortSignal.timeout(8_000)])));
       } catch (e) {
-        if ((e as Error).name === "AbortError") return;
+        if (ctrl.signal.aborted) return;
+        console.warn("[harga] panel tidak terjangkau dari browser:", (e as Error).message);
       }
       try {
-        save(await fetchPanelPrices(AbortSignal.any([ctrl.signal, AbortSignal.timeout(12_000)])));
+        const r = await fetch("/api/harga", { signal: ctrl.signal });
+        const d = (await r.json()) as { tanggal?: string; items?: Record<string, LivePrice> };
+        if (r.ok && d.items) save(d.items, d.tanggal);
       } catch {
-        // panel juga tidak terjangkau → tetap pakai harga yang ada
+        // server juga gagal → tetap pakai harga yang ada
       }
     })();
 
