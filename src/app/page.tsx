@@ -12,6 +12,7 @@ import { productById, products, rupiah, sections, type Product } from "@/lib/dat
 import { AppLogo } from "@/components/AppLogo";
 import { WebPhoto } from "@/components/WebPhoto";
 import { useCookbook } from "@/lib/cookbook";
+import { matchProduct, searchTerms } from "@/lib/search";
 import { useLivePrice, usePriceOf } from "@/lib/harga";
 import { IntroButton } from "@/components/Onboarding";
 import { ThemeToggle } from "@/components/ThemeToggle";
@@ -56,7 +57,8 @@ export default function Home() {
 
   const inCart = (sectionId: string) =>
     hydrated ? products.filter((p) => p.sectionId === sectionId).reduce((a, p) => a + (items[p.id] ?? 0), 0) : 0;
-  const results = q.trim() ? products.filter((p) => p.name.toLowerCase().includes(q.trim().toLowerCase())).slice(0, 30) : [];
+  const terms = searchTerms(q);
+  const results = terms.length ? products.filter((p) => matchProduct(p, terms)).slice(0, 30) : [];
 
   const search = (
     <label className="flex h-11 items-center gap-2 rounded-[12px] bg-white px-3 text-secondary shadow-[0_1px_2px_rgba(0,0,0,0.05)] ring-1 ring-black/[0.04]">

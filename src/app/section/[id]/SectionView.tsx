@@ -3,7 +3,7 @@
 import { notFound } from "next/navigation";
 import { useState } from "react";
 import { Basket } from "@/components/Basket";
-import { NavBar, Segmented } from "@/components/ios";
+import { NavBar, SearchIcon, Segmented, XIcon } from "@/components/ios";
 import { ProductImage } from "@/components/ProductImage";
 import { QtyControl } from "@/components/QtyControl";
 import { useCart } from "@/lib/cart";
@@ -11,6 +11,7 @@ import { products, rupiah, sections, type Product } from "@/lib/data";
 import { productInfo } from "@/lib/productInfo";
 import { useHarga, usePriceOf } from "@/lib/harga";
 import { useProductSheet } from "@/lib/productSheet";
+import { matchProduct, searchTerms } from "@/lib/search";
 import { useHydrated } from "@/lib/useHydrated";
 
 type Sort = "default" | "murah" | "protein" | "kalori";
@@ -37,6 +38,10 @@ export function SectionView({ id }: { id: string }) {
   if (!section) notFound();
   const [shelf, setShelf] = useState(section.shelves[0]);
   const [sort, setSort] = useState<Sort>("default");
+  const [q, setQ] = useState("");
+  const terms = searchTerms(q);
+  const searching = terms.length > 0;
+  const openProduct = useProductSheet((s) => s.open);
 
   const priceOf = usePriceOf();
   const jump = (name: string) => {
@@ -48,7 +53,26 @@ export function SectionView({ id }: { id: string }) {
     <main className="wall flex-1 pb-[300px]">
       <NavBar title={section.name} back={{ href: "/", label: "Toko" }}>
         <p className="text-[15px] text-secondary">{section.tagline}. Ketuk produk untuk melihat gizinya.</p>
-        {section.shelves.length > 1 && (
+        {/* cari di section ini */}
+        <label className="mt-3 flex h-10 items-center gap-2 rounded-[10px] bg-black/[0.06] px-2.5 text-secondary md:max-w-[560px]">
+          <SearchIcon className="h-[18px] w-[18px] shrink-0" />
+          <input
+            type="search"
+            value={q}
+            onChange={(e) => setQ(e.target.value)}
+            onKeyDown={(e) => e.key === "Escape" && setQ("")}
+            placeholder={`Cari di ${section.name.toLowerCase()}`}
+            aria-label={`Cari bahan di ${section.name}`}
+            enterKeyHint="search"
+            className="h-full min-w-0 flex-1 bg-transparent text-[16px] text-label outline-none placeholder:text-secondary [&::-webkit-search-cancel-button]:hidden"
+          />
+          {q && (
+            <button onClick={() => setQ("")} aria-label="Hapus pencarian" className="grid h-5 w-5 shrink-0 place-items-center rounded-full bg-[#8e8e93] text-white">
+              <XIcon className="h-3 w-3" />
+            </button>
+          )}
+        </label>
+        {!searching && section.shelves.length > 1 && (
           <div className="mt-3 md:max-w-[560px]">
             <Segmented options={section.shelves.map((s) => ({ value: s, label: s }))} value={shelf} onChange={jump} />
           </div>
@@ -70,9 +94,56 @@ export function SectionView({ id }: { id: string }) {
         </div>
       </NavBar>
 
-      {section.shelves.map((name) => (
-        <Shelf key={name} title={name} sort={sort} items={sortItems(products.filter((p) => p.sectionId === id && p.shelf === name), sort, priceOf)} />
-      ))}
+      {(() => {
+        const inSection = products.filter((p) => p.sectionId === id && matchProduct(p, terms));
+        if (searching && inSection.length === 0) {
+          // tidak ada di section ini → tawarkan yang cocok dari section lain
+          const elsewhere = products.filter((p) => p.sectionId !== id && matchProduct(p, terms)).slice(0, 8);
+          return (
+            <div className="mx-4 mt-8 md:mx-8">
+              <p className="text-[17px] font-semibold">Tidak ada “{q.trim()}” di {section.name}</p>
+              {elsewhere.length > 0 ? (
+                <>
+                  <p className="mt-1 text-[14px] text-secondary">Ada di section lain. Ketuk untuk melihat detail dan memasukkan ke keranjang.</p>
+                  <div className="mt-3 overflow-hidden rounded-[12px] bg-card">
+                    {elsewhere.map((p) => (
+                      <button
+                        key={p.id}
+                        onClick={() => openProduct(p.id)}
+                        className="flex w-full items-center gap-3 border-b border-separator px-3 py-2 text-left last:border-b-0 active:bg-black/[0.04]"
+                      >
+                        <ProductImage p={p} size={40} className="drop-shadow-none" />
+                        <span className="min-w-0 flex-1">
+                          <span className="block truncate text-[15px] font-medium">{p.name}</span>
+                          <span className="block text-[13px] text-secondary">
+                            {sections.find((s) => s.id === p.sectionId)?.name}, {rupiah(priceOf(p))} per {p.unit}
+                          </span>
+                        </span>
+                      </button>
+                    ))}
+                  </div>
+                </>
+              ) : (
+                <p className="mt-1 text-[14px] text-secondary">Coba kata lain, misalnya nama bahannya saja tanpa merek atau ukuran.</p>
+              )}
+            </div>
+          );
+        }
+        return (
+          <>
+            {searching && (
+              <p className="mx-4 mt-4 text-[14px] text-secondary md:mx-8">
+                {inSection.length} bahan cocok dengan “{q.trim()}”
+              </p>
+            )}
+            {section.shelves.map((name) => {
+              const items = inSection.filter((p) => p.shelf === name);
+              if (searching && items.length === 0) return null;
+              return <Shelf key={name} title={name} sort={sort} items={sortItems(items, sort, priceOf)} />;
+            })}
+          </>
+        );
+      })()}
 
       <Basket />
     </main>
