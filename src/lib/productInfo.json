@@ -3565,5 +3565,340 @@
    "Kue Jarang Senggol",
    "Cake Biskuit Regal"
   ]
+ },
+ "nangka": {
+  "gizi": {
+   "basis": "100 g",
+   "kalori": 106,
+   "protein": 1.2,
+   "karbohidrat": 27.6,
+   "lemak": 0.3,
+   "serat": 1.5
+  },
+  "tips": [
+   "Pilih nangka yang beraroma harum manis khas",
+   "Warna daging buah kuning cerah atau jingga",
+   "Tekstur buah teraba empuk namun tidak terlalu lembek"
+  ],
+  "penyimpanan": "Simpan nangka kupas dalam wadah kedap udara di dalam kulkas agar bertahan hingga 3 hari.",
+  "contohMasakan": [
+   "Gudeg Nangka",
+   "Sayur Lodeh Nangka",
+   "Es Teler"
+  ]
+ },
+ "jamur-enoki": {
+  "gizi": {
+   "basis": "100 g",
+   "kalori": 37,
+   "protein": 2.7,
+   "karbohidrat": 7.8,
+   "lemak": 0.4,
+   "serat": 2.7
+  },
+  "tips": [
+   "Pilih jamur dengan warna putih bersih dan mengkilap",
+   "Batang jamur terasa kokoh dan tidak berlendir",
+   "Kemasan vakum tidak kembung dan bebas dari bercak hitam"
+  ],
+  "penyimpanan": "Simpan di dalam bungkus kertas atau wadah tertutup di dalam lemari es bagian chiller.",
+  "contohMasakan": [
+   "Sup Jamur Enoki",
+   "Enoki Goreng Crispy",
+   "Enoki Jamur Balado"
+  ]
+ },
+ "jamur-shimeji": {
+  "gizi": {
+   "basis": "100 g",
+   "kalori": 35,
+   "protein": 3,
+   "karbohidrat": 6.5,
+   "lemak": 0.4,
+   "serat": 2.5
+  },
+  "tips": [
+   "Pilih rumpun shimeji yang padat dan tidak mudah patah",
+   "Tudung jamur berwarna cokelat merata tanpa ada bagian yang basah kuyup",
+   "Tidak mengeluarkan aroma asam atau bau tidak sedap"
+  ],
+  "penyimpanan": "Simpan di dalam kantong kertas di dalam laci sayur kulkas agar terjaga kelembapannya.",
+  "contohMasakan": [
+   "Tumis Shimeji Tahu",
+   "Sup Shimeji Ayam",
+   "Shimeji Cah Brokoli"
+  ]
+ },
+ "beras-ketan": {
+  "gizi": {
+   "basis": "100 g",
+   "kalori": 358,
+   "protein": 6.7,
+   "karbohidrat": 79.4,
+   "lemak": 0.7,
+   "serat": 1
+  },
+  "tips": [
+   "Pilih beras ketan dengan butiran yang utuh dan tidak banyak yang patah",
+   "Warna putih susu pekat dan tidak kusam",
+   "Bebas dari kutu beras dan bau apak"
+  ],
+  "penyimpanan": "Simpan dalam wadah kering dan tertutup rapat di suhu ruang agar bebas dari kutu.",
+  "contohMasakan": [
+   "Lemper Ayam",
+   "Ketan Serundeng",
+   "Ketan Susu Durian"
+  ]
+ },
+ "daun-pandan": {
+  "gizi": {
+   "basis": "100 g",
+   "kalori": 49,
+   "protein": 1.9,
+   "karbohidrat": 10.2,
+   "lemak": 0.7,
+   "serat": 2
+  },
+  "tips": [
+   "Pilih daun yang berwarna hijau tua segar tanpa bercak kecokelatan",
+   "Ukurannya lebar dan panjang dengan tekstur yang tidak layu",
+   "Aroma wangi pandan tercium kuat saat daun sedikit diremas"
+  ],
+  "penyimpanan": "Bungkus daun pandan dengan kertas basah lalu simpan di dalam lemari es untuk menjaga kesegarannya.",
+  "contohMasakan": [
+   "Kolak Pisang",
+   "Bubur Sumsum",
+   "Es Pisang Ijo"
+  ]
+ },
+ "tepung-maizena": {
+  "gizi": {
+   "basis": "100 g",
+   "kalori": 381,
+   "protein": 0.3,
+   "karbohidrat": 91.3,
+   "lemak": 0.1,
+   "serat": 0.9
+  },
+  "tips": [
+   "Pilih tepung maizena dengan warna putih bersih merata",
+   "Tekstur sangat halus dan tidak menggumpal keras",
+   "Kemasan masih tersegel rapi tanpa ada lubang"
+  ],
+  "penyimpanan": "Simpan di dalam toples kedap udara di tempat yang kering dan sejuk terhindar dari kelembapan.",
+  "contohMasakan": [
+   "Pisang Goreng Crispy",
+   "Saus Asam Manis",
+   "Bubur Mutiara"
+  ]
+ },
+ "selai": {
+  "gizi": {
+   "basis": "100 g",
+   "kalori": 278,
+   "protein": 0.4,
+   "karbohidrat": 69.3,
+   "lemak": 0.2,
+   "serat": 1.2
+  },
+  "tips": [
+   "Pilih selai dengan warna merah stroberi alami yang tidak terlalu mencolok",
+   "Tekstur kental lembut dengan bulir buah yang tampak nyata",
+   "Kemasan toples kaca atau plastik rapat tanpa tanda kebocoran"
+  ],
+  "penyimpanan": "Simpan di dalam kulkas setelah dibuka agar kualitas rasa dan teksturnya tetap terjaga.",
+  "contohMasakan": [
+   "Roti Bakar Selai",
+   "Kue Kering Thumbprint",
+   "Pancake Selai Stroberi"
+  ]
+ },
+ "gula-semut": {
+  "gizi": {
+   "basis": "100 g",
+   "kalori": 386,
+   "protein": 1.5,
+   "karbohidrat": 94,
+   "lemak": 0.2,
+   "serat": 0.5
+  },
+  "tips": [
+   "Pilih gula semut berwarna cokelat keemasan yang seragam",
+   "Tekstur butirannya halus, kering, dan tidak menggumpal keras",
+   "Memiliki aroma karamel nira kelapa yang khas dan harum"
+  ],
+  "penyimpanan": "Simpan di dalam wadah kedap udara di tempat kering untuk mencegah gula mencair akibat lembap.",
+  "contohMasakan": [
+   "Wedang Jahe",
+   "Kue Klepon",
+   "Bolu Gula Merah"
+  ]
+ },
+ "susu-bubuk": {
+  "gizi": {
+   "basis": "100 g",
+   "kalori": 496,
+   "protein": 26,
+   "karbohidrat": 38,
+   "lemak": 26.5,
+   "serat": 0
+  },
+  "tips": [
+   "Pilih susu bubuk dengan kemasan utuh tanpa ada bagian yang kembung atau bocor",
+   "Periksa tanggal kedaluwarsa yang tertera pada kemasan",
+   "Bubuk berwarna krem terang dan beraroma gurih susu"
+  ],
+  "penyimpanan": "Rapatkan kembali kemasan atau pindahkan ke toples kedap udara dan simpan di suhu ruang.",
+  "contohMasakan": [
+   "Kue Sus",
+   "Kue Bangkit",
+   "Es Susu Regal"
+  ]
+ },
+ "margarin": {
+  "gizi": {
+   "basis": "100 g",
+   "kalori": 717,
+   "protein": 0.2,
+   "karbohidrat": 0.4,
+   "lemak": 81,
+   "serat": 0
+  },
+  "tips": [
+   "Pilih margarin dengan warna kuning cerah merata",
+   "Tekstur padat lembut pada suhu ruang dan tidak berair",
+   "Aroma gurih khas margarin tidak tengik"
+  ],
+  "penyimpanan": "Simpan di tempat yang sejuk atau di dalam lemari es agar tidak meleleh.",
+  "contohMasakan": [
+   "Nasi Goreng Kampung",
+   "Martabak Manis",
+   "Kue Nastar"
+  ]
+ },
+ "yogurt": {
+  "gizi": {
+   "basis": "100 ml",
+   "kalori": 61,
+   "protein": 3.5,
+   "karbohidrat": 4.7,
+   "lemak": 3.3,
+   "serat": 0
+  },
+  "tips": [
+   "Pilih yogurt plain dengan tekstur kental yang konsisten",
+   "Aroma asam segar khas fermentasi susu yang tidak menyengat",
+   "Kemasan cup atau botol tertutup rapat dan belum kedaluwarsa"
+  ],
+  "penyimpanan": "Wajib disimpan di dalam lemari es bagian pendingin agar bakteri baik tetap hidup.",
+  "contohMasakan": [
+   "Salad Buah",
+   "Smoothie Mangga Yogurt",
+   "Ayam Panggang Marinasi Yogurt"
+  ]
+ },
+ "es-krim": {
+  "gizi": {
+   "basis": "100 ml",
+   "kalori": 207,
+   "protein": 3.5,
+   "karbohidrat": 24,
+   "lemak": 11,
+   "serat": 0.7
+  },
+  "tips": [
+   "Pilih wadah es krim yang tidak menunjukkan tanda-tanda pernah cair dan membeku kembali",
+   "Tekstur es krim padat dan lembut saat diambil",
+   "Komposisi rasa vanila dan cokelat berpadu seimbang"
+  ],
+  "penyimpanan": "Simpan selalu di dalam freezer dengan suhu beku yang stabil.",
+  "contohMasakan": [
+   "Es Krim Roti",
+   "Es Pisang Cokelat Es Krim",
+   "Es Teler Durian Spesial"
+  ]
+ },
+ "kolang-kaling": {
+  "gizi": {
+   "basis": "100 g",
+   "kalori": 27,
+   "protein": 0.4,
+   "karbohidrat": 6,
+   "lemak": 0.2,
+   "serat": 1.6
+  },
+  "tips": [
+   "Pilih kolang-kaling yang berukuran pipih melebar dan agak transparan",
+   "Tekstur kenyal padat saat ditekan dan tidak berlendir",
+   "Aroma segar bebas dari bau asam fermentasi yang berlebihan"
+  ],
+  "penyimpanan": "Rendam dalam air bersih di dalam wadah tertutup di dalam kulkas, ganti airnya setiap hari.",
+  "contohMasakan": [
+   "Es Campur",
+   "Manisan Kolang-Kaling",
+   "Kolak Kolang-Kaling Pisang"
+  ]
+ },
+ "nata-de-coco": {
+  "gizi": {
+   "basis": "100 g",
+   "kalori": 36,
+   "protein": 0.2,
+   "karbohidrat": 8.9,
+   "lemak": 0.1,
+   "serat": 1
+  },
+  "tips": [
+   "Pilih nata de coco dengan potongan kotak yang kokoh dan tidak hancur",
+   "Air rendamannya jernih dan tidak keruh berlendir",
+   "Tekstur kenyal saat digigit"
+  ],
+  "penyimpanan": "Simpan di dalam wadah tertutup di dalam kulkas setelah kemasan dibuka.",
+  "contohMasakan": [
+   "Es Buah Segar",
+   "Es Teller",
+   "Puding Nata de Coco"
+  ]
+ },
+ "cincau": {
+  "gizi": {
+   "basis": "100 g",
+   "kalori": 6,
+   "protein": 0.2,
+   "karbohidrat": 1.5,
+   "lemak": 0.1,
+   "serat": 1.2
+  },
+  "tips": [
+   "Pilih cincau hitam dengan tekstur yang padat, kenyal, dan tidak mudah hancur",
+   "Warna hitam legam mengkilap alami",
+   "Aroma khas daun cincau yang segar tanpa bau kimia"
+  ],
+  "penyimpanan": "Simpan dalam wadah terendam air matang bersih di dalam lemari es agar tidak kering.",
+  "contohMasakan": [
+   "Es Cincau Hitam",
+   "Es Doger",
+   "Es Campur Bandung"
+  ]
+ },
+ "sagu-mutiara": {
+  "gizi": {
+   "basis": "100 g",
+   "kalori": 350,
+   "protein": 0.5,
+   "karbohidrat": 86.5,
+   "lemak": 0.3,
+   "serat": 0.5
+  },
+  "tips": [
+   "Pilih butiran sagu mutiara yang kering sempurna dan tidak menggumpal",
+   "Warna mutiara tampak cerah dan tidak pudar atau berjamur"
+  ],
+  "penyimpanan": "Simpan dalam wadah kedap udara di tempat yang kering dan sejuk agar tidak mudah berjamur.",
+  "contohMasakan": [
+   "Bubur Mutiara",
+   "Es Campur",
+   "Kue Sagu Mutiara"
+  ]
  }
 }

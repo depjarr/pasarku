@@ -24,7 +24,7 @@ export const sections: Section[] = [
   { id: "susu-telur", name: "Tahu, Tempe & Telur", tagline: "Protein harian", color: "#d9a21b", shelves: ["Tahu & Tempe", "Telur & Susu", "Keju & Mentega"] },
   { id: "karbo", name: "Beras & Karbo", tagline: "Sumber energi", color: "#a0703c", shelves: ["Beras & Mi", "Umbi-umbian", "Roti & Pasta"] },
   { id: "bumbu", name: "Bumbu & Rempah", tagline: "Rahasia rasa nusantara", color: "#7a5bb5", shelves: ["Bumbu Segar", "Daun Bumbu", "Rempah Kering"] },
-  { id: "kue", name: "Bahan Kue & Dessert", tagline: "Untuk kue, cookie & puding", color: "#d9668f", shelves: ["Tepung & Pengembang", "Cokelat & Pemanis", "Susu, Krim & Pelengkap"] },
+  { id: "kue", name: "Bahan Kue & Dessert", tagline: "Untuk kue, cookie, puding & es", color: "#d9668f", shelves: ["Tepung & Pengembang", "Cokelat & Pemanis", "Susu, Krim & Pelengkap", "Pelengkap Es & Minuman"] },
   { id: "sembako", name: "Sembako & Kacang", tagline: "Kebutuhan dapur", color: "#5b7f2e", shelves: ["Gula, Garam, Tepung & Minyak", "Kacang-kacangan", "Kecap & Madu"] },
 ];
 
@@ -55,6 +55,7 @@ export const products: Product[] = [
     ["stroberi", "Stroberi Ciwidey", "Strawberries", 30000, "250 g"],
   ]),
   ...P("buah", "Buah Tropis", [
+    ["nangka", "Nangka Kupas", "/produk/nangka.png", 25000, "500 g"],
     ["salak", "Salak Pondoh", "/produk/salak.png", 22000, "1 kg"],
     ["rambutan", "Rambutan Binjai", "/produk/rambutan.png", 25000, "1 kg"],
     ["manggis", "Manggis", "/produk/manggis.png", 40000, "1 kg"],
@@ -126,6 +127,8 @@ export const products: Product[] = [
     ["jamur-kuping", "Jamur Kuping", "/produk/jamur-kuping.png", 12000, "200 g"],
     ["jamur-merang", "Jamur Merang", "/produk/jamur-merang.png", 14000, "250 g"],
     ["jamur-kastanye", "Jamur Kastanye (Cremini)", "/produk/jamur-kastanye.png", 28000, "200 g"],
+    ["jamur-enoki", "Jamur Enoki", "/produk/jamur-enoki.png", 8000, "100 g"],
+    ["jamur-shimeji", "Jamur Shimeji Cokelat", "/produk/jamur-shimeji.png", 18000, "150 g"],
   ]),
 
   // ───────── Daging
@@ -189,6 +192,7 @@ export const products: Product[] = [
 
   // ───────── Beras & Karbo
   ...P("karbo", "Beras & Mi", [
+    ["beras-ketan", "Beras Ketan Putih", "/produk/beras-ketan.png", 22000, "1 kg"],
     ["beras", "Beras Pandan Wangi", "/produk/beras.png", 80000, "5 kg"],
     ["beras-merah", "Beras Merah & Hitam", "/produk/beras-merah.png", 25000, "1 kg"],
     ["mi-kering", "Mi Telur Kering", "/produk/mi-kering.png", 8000, "200 g"],
@@ -218,6 +222,7 @@ export const products: Product[] = [
     ["lengkuas", "Lengkuas", "Galangal", 3000, "100 g"],
   ]),
   ...P("bumbu", "Daun Bumbu", [
+    ["daun-pandan", "Daun Pandan", "/produk/daun-pandan.png", 3000, "1 ikat"],
     ["serai", "Serai", "Lemongrass", 3000, "1 ikat"],
     ["daun-jeruk", "Daun Jeruk", "Lime Leaves", 2000, "1 ikat"],
     ["daun-salam", "Daun Salam", "Bay Leaf", 2000, "1 ikat"],
@@ -242,6 +247,7 @@ export const products: Product[] = [
     ["tepung-tapioka", "Tepung Tapioka", "/produk/tepung-tapioka.png", 7500, "500 g"],
     ["baking-powder", "Baking Powder", "/produk/baking-powder.png", 9000, "45 g"],
     ["ragi", "Ragi Instan", "/produk/ragi.png", 7000, "3 sachet"],
+    ["tepung-maizena", "Tepung Maizena", "/produk/tepung-maizena.png", 9000, "150 g"],
   ]),
   ...P("kue", "Cokelat & Pemanis", [
     ["cokelat-bubuk", "Cokelat Bubuk", "/produk/cokelat-bubuk.png", 18000, "100 g"],
@@ -252,6 +258,8 @@ export const products: Product[] = [
     ["vanili", "Vanili", "Vanilla", 5000, "10 g"],
     ["kismis", "Kismis", "Raisins", 18000, "100 g"],
     ["karamel", "Saus Karamel", "/produk/karamel.png", 28000, "250 ml"],
+    ["selai", "Selai Stroberi", "/produk/selai.png", 24000, "250 g"],
+    ["gula-semut", "Gula Semut (Gula Kelapa)", "/produk/gula-semut.png", 18000, "250 g"],
   ]),
   ...P("kue", "Susu, Krim & Pelengkap", [
     ["skm", "Susu Kental Manis", "/produk/skm.png", 12000, "370 g"],
@@ -260,6 +268,16 @@ export const products: Product[] = [
     ["agar", "Agar-agar Bubuk", "/produk/agar.png", 4500, "7 g"],
     ["kelapa-kering", "Kelapa Parut Kering", "/produk/kelapa-kering.png", 10000, "100 g"],
     ["biskuit", "Biskuit Marie", "/produk/biskuit.png", 11000, "1 bungkus"],
+    ["susu-bubuk", "Susu Bubuk Full Cream", "/produk/susu-bubuk.png", 45000, "400 g"],
+    ["margarin", "Margarin", "/produk/margarin.png", 12000, "200 g"],
+    ["yogurt", "Yogurt Plain", "/produk/yogurt.png", 25000, "500 g"],
+    ["es-krim", "Es Krim Vanila & Cokelat", "/produk/es-krim.png", 35000, "700 ml"],
+  ]),
+  ...P("kue", "Pelengkap Es & Minuman", [
+    ["kolang-kaling", "Kolang-kaling", "/produk/kolang-kaling.png", 12000, "250 g"],
+    ["nata-de-coco", "Nata de Coco", "/produk/nata-de-coco.png", 10000, "500 g"],
+    ["cincau", "Cincau Hitam", "/produk/cincau.png", 6000, "500 g"],
+    ["sagu-mutiara", "Sagu Mutiara Warna", "/produk/sagu-mutiara.png", 8000, "250 g"],
   ]),
 
   // ───────── Sembako & Kacang

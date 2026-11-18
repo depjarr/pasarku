@@ -77,4 +77,20 @@ Next.js 16 (App Router) · Tailwind CSS 4 · Zustand (keranjang, disimpan di loc
   - agar — [Sodium bicarbonate.jpg](https://commons.wikimedia.org/wiki/File:Sodium_bicarbonate.jpg), Thavox, Public domain
   - kelapa-kering — [Coconut Cookies (4801683503).jpg](https://commons.wikimedia.org/wiki/File:Coconut_Cookies_(4801683503).jpg), Miia Ranta from Finland, CC BY-SA 2.0
   - biskuit — [Morinaga marie biscuit 2014-2.jpg](https://commons.wikimedia.org/wiki/File:Morinaga_marie_biscuit_2014-2.jpg), Kentin, CC BY-SA 4.0
+  - jamur-enoki — [A small but tasty harvest (10843427516).jpg](https://commons.wikimedia.org/wiki/File:A_small_but_tasty_harvest_(10843427516).jpg), Wendell Smith, CC BY 2.0
+  - jamur-shimeji — [Mushroom Reference -11.jpg](https://commons.wikimedia.org/wiki/File:Mushroom_Reference_-11.jpg), claralieu, CC BY 2.0
+  - daun-pandan — [Pandanus amaryllifolius-2-bsi-yercaud-salem-India.jpg](https://commons.wikimedia.org/wiki/File:Pandanus_amaryllifolius-2-bsi-yercaud-salem-India.jpg), Yercaud-elango, CC BY-SA 4.0
+  - beras-ketan — [2014 uncooked Thai glutinous rice.jpg](https://commons.wikimedia.org/wiki/File:2014_uncooked_Thai_glutinous_rice.jpg), Takeaway, CC BY-SA 4.0
+  - nangka — [Ripe Jackfruit.jpg](https://commons.wikimedia.org/wiki/File:Ripe_Jackfruit.jpg), Sannidhishetty, CC BY-SA 4.0
+  - tepung-maizena — [Cornstarch mixed with water.jpg](https://commons.wikimedia.org/wiki/File:Cornstarch_mixed_with_water.jpg), Picasa author kalaya, CC BY-SA 3.0
+  - susu-bubuk — [PowderedMilk.jpg](https://commons.wikimedia.org/wiki/File:PowderedMilk.jpg), CC BY-SA 3.0
+  - margarin — [Margarine.jpg](https://commons.wikimedia.org/wiki/File:Margarine.jpg), CC BY-SA 2.0
+  - selai — [Az-Strawberry jam, making by e-citizen (moonsun1981).JPG](https://commons.wikimedia.org/wiki/File:Az-Strawberry_jam,_making_by_e-citizen_(moonsun1981).JPG), Moonsun1981, CC BY-SA 3.0
+  - gula-semut — [Organic coconut sugar Bansalan4.jpg](https://commons.wikimedia.org/wiki/File:Organic_coconut_sugar_Bansalan4.jpg), CC BY-SA 4.0
+  - kolang-kaling — [Kolang kaling (buah atap).jpg](https://commons.wikimedia.org/wiki/File:Kolang_kaling_(buah_atap).jpg), Hzu Hzu, CC BY 4.0
+  - nata-de-coco — [09978jfCuisine Breads Fruits Baliuag Landmarks Bulacanfvf 33.jpg](https://commons.wikimedia.org/wiki/File:09978jfCuisine_Breads_Fruits_Baliuag_Landmarks_Bulacanfvf_33.jpg), Judgefloro, CC0
+  - cincau — [GrassJellyBlocks.jpg](https://commons.wikimedia.org/wiki/File:GrassJellyBlocks.jpg), Sjschen, CC BY-SA 4.0
+  - es-krim — [Bowl ~ Ice cream.jpg](https://commons.wikimedia.org/wiki/File:Bowl_~_Ice_cream.jpg), Mitchellhobbs, CC BY-SA 4.0
+  - sagu-mutiara — [Sago 20161224.jpg](https://commons.wikimedia.org/wiki/File:Sago_20161224.jpg), Televido, CC BY-SA 4.0
+  - yogurt — [Plain Yogurt.jpg](https://commons.wikimedia.org/wiki/File:Plain_Yogurt.jpg), Alabama Extension, CC0
 - Gambar keranjang: disediakan pemilik proyek
