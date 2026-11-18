@@ -3103,5 +3103,467 @@
    "Teh Lemon Madu",
    "Pancake Madu"
   ]
+ },
+ "jamur-kuping": {
+  "gizi": {
+   "basis": "100 g",
+   "kalori": 27,
+   "protein": 1.5,
+   "karbohidrat": 7,
+   "lemak": 0.2,
+   "serat": 5.8
+  },
+  "tips": [
+   "Pilih jamur yang keringnya merata jika membeli versi kering",
+   "Tekstur kenyal dan tidak berlendir untuk versi segar",
+   "Tidak berbau asam atau busuk"
+  ],
+  "penyimpanan": "Simpan di tempat kering dan sejuk atau di dalam wadah kedap udara di kulkas.",
+  "contohMasakan": [
+   "Sup Kimlo",
+   "Tumis Jamur Kuping",
+   "Capcay"
+  ]
+ },
+ "jamur-merang": {
+  "gizi": {
+   "basis": "100 g",
+   "kalori": 30,
+   "protein": 3.2,
+   "karbohidrat": 4.5,
+   "lemak": 0.3,
+   "serat": 1.5
+  },
+  "tips": [
+   "Pilih yang tudungnya masih kuncup dan bulat utuh",
+   "Warna putih atau kecokelatan bersih tanpa bercak hitam",
+   "Aroma khas jamur segar tidak menyengat"
+  ],
+  "penyimpanan": "Simpan di dalam kantong kertas di dalam lemari es agar tidak cepat basah.",
+  "contohMasakan": [
+   "Pepes Jamur Merang",
+   "Tumis Jamur Pedas",
+   "Sup Jamur Merang"
+  ]
+ },
+ "jamur-kastanye": {
+  "gizi": {
+   "basis": "100 g",
+   "kalori": 22,
+   "protein": 2.5,
+   "karbohidrat": 3.3,
+   "lemak": 0.2,
+   "serat": 1.2
+  },
+  "tips": [
+   "Pilih tudung yang kokoh dan tidak berkerut",
+   "Permukaan kering dan tidak berlendir",
+   "Aroma segar khas jamur"
+  ],
+  "penyimpanan": "Simpan di dalam wadah beralas tisu di dalam kulkas.",
+  "contohMasakan": [
+   "Tumis Jamur Kastanye",
+   "Sup Krim Jamur",
+   "Pasta Jamur"
+  ]
+ },
+ "tepung-beras": {
+  "gizi": {
+   "basis": "100 g",
+   "kalori": 364,
+   "protein": 5.9,
+   "karbohidrat": 80,
+   "lemak": 0.7,
+   "serat": 2.4
+  },
+  "tips": [
+   "Pilih tepung yang berwarna putih bersih",
+   "Tekstur sangat halus dan tidak menggumpal",
+   "Tidak berbau apek"
+  ],
+  "penyimpanan": "Simpan di wadah kedap udara di tempat yang kering dan sejuk.",
+  "contohMasakan": [
+   "Kue Nagasari",
+   "Rempeyek",
+   "Bubur Sumsum"
+  ]
+ },
+ "tepung-ketan": {
+  "gizi": {
+   "basis": "100 g",
+   "kalori": 364,
+   "protein": 6.7,
+   "karbohidrat": 79.4,
+   "lemak": 0.5,
+   "serat": 1
+  },
+  "tips": [
+   "Warna putih bersih dan cemerlang",
+   "Bila dipegang terasa sangat lembut dan licin",
+   "Kemasan utuh dan tidak lembap"
+  ],
+  "penyimpanan": "Simpan dalam toples tertutup rapat di tempat kering.",
+  "contohMasakan": [
+   "Klepon",
+   "Onde-onde",
+   "Kue Mochi"
+  ]
+ },
+ "tepung-tapioka": {
+  "gizi": {
+   "basis": "100 g",
+   "kalori": 362,
+   "protein": 0.5,
+   "karbohidrat": 86.9,
+   "lemak": 0.3,
+   "serat": 0.9
+  },
+  "tips": [
+   "Warna putih bersih tanpa ada kotoran",
+   "Tekstur sangat halus seperti sutra",
+   "Tidak berbau apek atau asam"
+  ],
+  "penyimpanan": "Simpan di dalam wadah tertutup rapat di suhu ruang.",
+  "contohMasakan": [
+   "Pempek",
+   "Cireng",
+   "Baso Aci"
+  ]
+ },
+ "baking-powder": {
+  "gizi": {
+   "basis": "100 g",
+   "kalori": 53,
+   "protein": 0,
+   "karbohidrat": 27.7,
+   "lemak": 0,
+   "serat": 0
+  },
+  "tips": [
+   "Perhatikan tanggal kedaluwarsa pada kemasan",
+   "Pastikan kemasan tidak menggembung atau bocor",
+   "Bubuk tidak menggumpal keras"
+  ],
+  "penyimpanan": "Simpan di wadah kedap udara di tempat kering, jauh dari kelembapan.",
+  "contohMasakan": [
+   "Bolu Kukus",
+   "Kue Mangkok",
+   "Pukis"
+  ]
+ },
+ "ragi": {
+  "gizi": {
+   "basis": "100 g",
+   "kalori": 325,
+   "protein": 40,
+   "karbohidrat": 41,
+   "lemak": 7.5,
+   "serat": 25
+  },
+  "tips": [
+   "Periksa tanggal kedaluwarsa",
+   "Pastikan sachet hampa udara dan tidak bocor",
+   "Ragi masih aktif saat dites dengan air hangat dan gula"
+  ],
+  "penyimpanan": "Simpan di tempat sejuk dan kering, bisa di dalam lemari es setelah dibuka.",
+  "contohMasakan": [
+   "Donat",
+   "Roti Tawar",
+   "Apem"
+  ]
+ },
+ "cokelat-bubuk": {
+  "gizi": {
+   "basis": "100 g",
+   "kalori": 228,
+   "protein": 19.6,
+   "karbohidrat": 57.9,
+   "lemak": 13.7,
+   "serat": 33.2
+  },
+  "tips": [
+   "Pilih warna cokelat tua pekat",
+   "Aroma cokelat tajam dan harum",
+   "Tekstur bubuk halus tidak menggumpal"
+  ],
+  "penyimpanan": "Simpan dalam wadah kedap udara di tempat sejuk dan terhindar dari matahari.",
+  "contohMasakan": [
+   "Brownies Kukus",
+   "Kue Cubit Cokelat",
+   "Es Susu Cokelat"
+  ]
+ },
+ "cokelat-batang": {
+  "gizi": {
+   "basis": "100 g",
+   "kalori": 546,
+   "protein": 4.9,
+   "karbohidrat": 61.2,
+   "lemak": 31.3,
+   "serat": 7
+  },
+  "tips": [
+   "Permukaan mengkilap dan tidak ada bercak putih",
+   "Tidak meleleh di suhu ruang sebelum dibuka",
+   "Aroma khas cokelat pekat"
+  ],
+  "penyimpanan": "Simpan di tempat sejuk dan kering, hindari paparan sinar matahari langsung.",
+  "contohMasakan": [
+   "Brownies Panggang",
+   "Ganache Cokelat",
+   "Cookies Cokelat"
+  ]
+ },
+ "cokelat-putih": {
+  "gizi": {
+   "basis": "100 g",
+   "kalori": 539,
+   "protein": 5.9,
+   "karbohidrat": 59.2,
+   "lemak": 31.8,
+   "serat": 0
+  },
+  "tips": [
+   "Warna putih gading merata",
+   "Tidak berbau tengik",
+   "Tekstur padat dan keras"
+  ],
+  "penyimpanan": "Simpan di wadah tertutup di tempat yang sejuk dan kering.",
+  "contohMasakan": [
+   "Puding Cokelat Putih",
+   "Hiasan Kue",
+   "Biskuit Berlapis Cokelat"
+  ]
+ },
+ "choco-chips": {
+  "gizi": {
+   "basis": "100 g",
+   "kalori": 479,
+   "protein": 4.3,
+   "karbohidrat": 65,
+   "lemak": 24,
+   "serat": 4
+  },
+  "tips": [
+   "Bentuk tetesan air seragam",
+   "Tidak meleleh di suhu ruang",
+   "Aroma manis cokelat terasa"
+  ],
+  "penyimpanan": "Simpan di toples kedap udara di tempat yang kering dan sejuk.",
+  "contohMasakan": [
+   "Choco Chip Cookies",
+   "Muffin Cokelat",
+   "Topping Roti Bakar"
+  ]
+ },
+ "gula-halus": {
+  "gizi": {
+   "basis": "100 g",
+   "kalori": 389,
+   "protein": 0,
+   "karbohidrat": 99.8,
+   "lemak": 0,
+   "serat": 0
+  },
+  "tips": [
+   "Tekstur sangat lembut dan tidak menggumpal keras",
+   "Warna putih bersih",
+   "Tidak ada campuran kotoran"
+  ],
+  "penyimpanan": "Simpan di dalam toples tertutup rapat di tempat kering.",
+  "contohMasakan": [
+   "Kue Putri Salju",
+   "Icing Donat",
+   "Kue Kacang"
+  ]
+ },
+ "vanili": {
+  "gizi": {
+   "basis": "100 g",
+   "kalori": 288,
+   "protein": 0.1,
+   "karbohidrat": 12.7,
+   "lemak": 0.1,
+   "serat": 0
+  },
+  "tips": [
+   "Aroma harum khas vanila pekat",
+   "Kemasan sachet atau botol tertutup rapat",
+   "Bubuk halus tidak menggumpal"
+  ],
+  "penyimpanan": "Simpan di tempat kering dan sejuk dalam wadah tertutup.",
+  "contohMasakan": [
+   "Kolak Pisang",
+   "Kue Bolu",
+   "Bubur Candil"
+  ]
+ },
+ "kismis": {
+  "gizi": {
+   "basis": "100 g",
+   "kalori": 299,
+   "protein": 3.1,
+   "karbohidrat": 79.2,
+   "lemak": 0.5,
+   "serat": 3.7
+  },
+  "tips": [
+   "Warna cokelat tua atau hitam pekat mengkilap",
+   "Tekstur kenyal tidak terlalu keras",
+   "Tidak berbau asam atau berjamur"
+  ],
+  "penyimpanan": "Simpan di wadah kedap udara di dalam kulkas agar tidak berair.",
+  "contohMasakan": [
+   "Roti Manis Kismis",
+   "Kue Soes",
+   "Nasi Mandhi"
+  ]
+ },
+ "karamel": {
+  "gizi": {
+   "basis": "100 ml",
+   "kalori": 350,
+   "protein": 1,
+   "karbohidrat": 80,
+   "lemak": 3,
+   "serat": 0
+  },
+  "tips": [
+   "Pilih saus dengan tekstur kental yang mengalir lembut",
+   "Pastikan kemasan tertutup rapat dan tidak ada kristal gula di pinggirannya",
+   "Periksa tanggal kedaluwarsa pada label kemasan"
+  ],
+  "penyimpanan": "Simpan dalam wadah kedap udara di suhu ruang yang sejuk atau di dalam lemari es.",
+  "contohMasakan": [
+   "Puding Karamel",
+   "Saus Pisang Bakar",
+   "Es Kopi Karamel"
+  ]
+ },
+ "skm": {
+  "gizi": {
+   "basis": "100 g",
+   "kalori": 325,
+   "protein": 8,
+   "karbohidrat": 55,
+   "lemak": 9,
+   "serat": 0
+  },
+  "tips": [
+   "Pilih kaleng yang tidak penyok, berkarat, atau kembung",
+   "Periksa tanggal kedaluwarsa dan keutuhan segel pada tutup",
+   "Pastikan warna susu putih kekuningan merata tanpa endapan"
+  ],
+  "penyimpanan": "Simpan di tempat sejuk dan kering, serta pindahkan ke wadah tertutup di kulkas setelah dibuka.",
+  "contohMasakan": [
+   "Es Teler",
+   "Martabak Manis",
+   "Kopi Susu Tradisional"
+  ]
+ },
+ "whipping-cream": {
+  "gizi": {
+   "basis": "100 ml",
+   "kalori": 345,
+   "protein": 2,
+   "karbohidrat": 3,
+   "lemak": 36,
+   "serat": 0
+  },
+  "tips": [
+   "Pilih kemasan cair yang disimpan di lemari pendingin (chiller), bukan di suhu ruang",
+   "Pastikan segel kemasan aman dan tidak ada kerusakan",
+   "Periksa tanggal kadaluwarsa karena produk dairy cepat basi"
+  ],
+  "penyimpanan": "Simpan di dalam lemari pendingin dengan suhu stabil dan segera gunakan setelah dibuka.",
+  "contohMasakan": [
+   "Sup Krim Jagung",
+   "Es Krim Vanila",
+   "Kue Sus Vla"
+  ]
+ },
+ "cream-cheese": {
+  "gizi": {
+   "basis": "100 g",
+   "kalori": 342,
+   "protein": 6,
+   "karbohidrat": 4,
+   "lemak": 34,
+   "serat": 0
+  },
+  "tips": [
+   "Pilih keju oles dengan tekstur padat dan lembut saat ditekan kemasannya",
+   "Pastikan tidak ada tanda-tanda berjamur atau berair berlebihan di permukaannya",
+   "Periksa tanggal kedaluwarsa pada kemasan foil atau wadahnya"
+  ],
+  "penyimpanan": "Simpan di dalam lemari es dalam wadah tertutup rapat agar tidak menyerap aroma makanan lain.",
+  "contohMasakan": [
+   "Cheesecake Lumer",
+   "Roti Gulung Keju",
+   "Olesan Roti Gandum"
+  ]
+ },
+ "agar": {
+  "gizi": {
+   "basis": "100 g",
+   "kalori": 306,
+   "protein": 0.1,
+   "karbohidrat": 80,
+   "lemak": 0.2,
+   "serat": 75
+  },
+  "tips": [
+   "Pilih kemasan sachet yang tidak robek dan kedap udara",
+   "Pastikan bubuk agar tidak menggumpal di dalam kemasan",
+   "Periksa izin edar dan tanggal kedaluwarsa"
+  ],
+  "penyimpanan": "Simpan di tempat yang kering, sejuk, dan terhindar dari paparan sinar matahari langsung.",
+  "contohMasakan": [
+   "Puding Susu Buah",
+   "Es Campur Agar",
+   "Puding Lumut"
+  ]
+ },
+ "kelapa-kering": {
+  "gizi": {
+   "basis": "100 g",
+   "kalori": 600,
+   "protein": 6,
+   "karbohidrat": 24,
+   "lemak": 60,
+   "serat": 14
+  },
+  "tips": [
+   "Pilih kelapa kering dengan warna putih bersih tanpa ada bintik kecokelatan",
+   "Pastikan aroma gurih khas kelapa masih tercium kuat dan tidak tengik",
+   "Pilih kemasan plastik vakum atau toples yang tertutup rapat"
+  ],
+  "penyimpanan": "Simpan dalam wadah kedap udara di tempat sejuk dan kering atau di dalam lemari es.",
+  "contohMasakan": [
+   "Kue Kering Kelapa",
+   "Bolu Kukus Kelapa",
+   "Taburan Onde-Onde"
+  ]
+ },
+ "biskuit": {
+  "gizi": {
+   "basis": "100 g",
+   "kalori": 420,
+   "protein": 8,
+   "karbohidrat": 72,
+   "lemak": 11,
+   "serat": 2
+  },
+  "tips": [
+   "Pilih kemasan biskuit yang tidak bocor atau kempes agar tetap renyah",
+   "Pastikan tanggal kedaluwarsa masih lama",
+   "Pilih biskuit dengan aroma harum khas susu dan vanila"
+  ],
+  "penyimpanan": "Simpan di dalam toples kedap udara untuk menjaga tekstur renyah dan mencegahnya melempem.",
+  "contohMasakan": [
+   "Puding Regal",
+   "Kue Jarang Senggol",
+   "Cake Biskuit Regal"
+  ]
  }
 }

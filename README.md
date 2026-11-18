@@ -58,4 +58,23 @@ Next.js 16 (App Router) · Tailwind CSS 4 · Zustand (keranjang, disimpan di loc
   - gula-merah — [20200217 101805 Peasants producing palm sugar and palm liquor near Nyaung U Myanmar anagoria.jpg](https://commons.wikimedia.org/wiki/File:20200217_101805_Peasants_producing_palm_sugar_and_palm_liquor_near_Nyaung_U_Myanmar_anagoria.jpg), CC BY 3.0
   - telur-asin — [07543jfCuisine Breads Foods Fruits Baliuag Bulacanfvf 29.jpg](https://commons.wikimedia.org/wiki/File:07543jfCuisine_Breads_Foods_Fruits_Baliuag_Bulacanfvf_29.jpg), CC0
   - teri — [Dried thai anchovies62.jpg](https://commons.wikimedia.org/wiki/File:Dried_thai_anchovies62.jpg), CC BY-SA 3.0
+  - jamur-kuping — [Jelly Ear, Auricularia auricula-judae, UK 2.jpg](https://commons.wikimedia.org/wiki/File:Jelly_Ear,_Auricularia_auricula-judae,_UK_2.jpg), Stu's Images, CC BY-SA 4.0
+  - jamur-merang — [HK food 草菇 Volvariella volvacea Straw Mushroom May-2012.JPG](https://commons.wikimedia.org/wiki/File:HK_food_%E8%8D%89%E8%8F%87_Volvariella_volvacea_Straw_Mushroom_May-2012.JPG), Cathiniamoa, CC BY-SA 3.0
+  - jamur-kastanye — [2016-01 Agaricus bisporus 07.jpg](https://commons.wikimedia.org/wiki/File:2016-01_Agaricus_bisporus_07.jpg), 0x010C, CC BY-SA 4.0
+  - tepung-beras — [Rice flour 2.jpg](https://commons.wikimedia.org/wiki/File:Rice_flour_2.jpg), 경빈마마, CC BY 2.0 kr
+  - tepung-ketan — [Glutinous rice flour.jpg](https://commons.wikimedia.org/wiki/File:Glutinous_rice_flour.jpg), Ocomejessian, CC BY-SA 3.0
+  - tepung-tapioka — [A plate of Tapioca.jpg](https://commons.wikimedia.org/wiki/File:A_plate_of_Tapioca.jpg), Linason Blessing, CC BY-SA 4.0
+  - baking-powder — [Sodium bicarbonate CN brightened.png](https://commons.wikimedia.org/wiki/File:Sodium_bicarbonate_CN_brightened.png), Tszrkx, CC0
+  - ragi — [Дрожжи сухие активные - Active dry yeast.JPG](https://commons.wikimedia.org/wiki/File:%D0%94%D1%80%D0%BE%D0%B6%D0%B6%D0%B8_%D1%81%D1%83%D1%85%D0%B8%D0%B5_%D0%B0%D0%BA%D1%82%D0%B8%D0%B2%D0%BD%D1%8B%D0%B5_-_Active_dry_yeast.JPG), Shliphmash, Public domain
+  - cokelat-bubuk — [Cocoa-powder-1883108.jpg](https://commons.wikimedia.org/wiki/File:Cocoa-powder-1883108.jpg), thecakeschool, CC0
+  - cokelat-batang — [2020-02-23 02 24 15 A Ghirardelli Dark Chocolate Mint Square broken into two pieces in the Parkway Village section of Ewing Township, Mercer County, New Jersey.jpg](https://commons.wikimedia.org/wiki/File:2020-02-23_02_24_15_A_Ghirardelli_Dark_Chocolate_Mint_Square_broken_into_two_pieces_in_the_Parkway_Village_section_of_Ewing_Township,_Mercer_County,_New_Jersey.jpg), Famartin, CC BY-SA 4.0
+  - cokelat-putih — [Twix white split (6902053171).jpg](https://commons.wikimedia.org/wiki/File:Twix_white_split_(6902053171).jpg), Bodo, CC BY 2.0
+  - gula-halus — [PowderedSugar.png](https://commons.wikimedia.org/wiki/File:PowderedSugar.png), Ɱ, CC BY-SA 4.0
+  - karamel — [Caramel-2.jpg](https://commons.wikimedia.org/wiki/File:Caramel-2.jpg), No machine-readable author provided. Rainer Zenz assumed (ba, CC BY-SA 3.0
+  - skm — [Tin of condensed milk.jpg](https://commons.wikimedia.org/wiki/File:Tin_of_condensed_milk.jpg), Robin from Rotterdam, Netherlands, CC BY-SA 2.0
+  - whipping-cream — [Frozen Whipped Cream Sandwiches.jpg](https://commons.wikimedia.org/wiki/File:Frozen_Whipped_Cream_Sandwiches.jpg), Jo, CC BY 2.0
+  - cream-cheese — [2019-10-12 15 31 00 A open carton of Harris Teeter Plain Cream Cheese Spread in the Dulles section of Sterling, Loudoun County, Virginia.jpg](https://commons.wikimedia.org/wiki/File:2019-10-12_15_31_00_A_open_carton_of_Harris_Teeter_Plain_Cream_Cheese_Spread_in_the_Dulles_section_of_Sterling,_Loudoun_County,_Virginia.jpg), Famartin, CC BY-SA 4.0
+  - agar — [Sodium bicarbonate.jpg](https://commons.wikimedia.org/wiki/File:Sodium_bicarbonate.jpg), Thavox, Public domain
+  - kelapa-kering — [Coconut Cookies (4801683503).jpg](https://commons.wikimedia.org/wiki/File:Coconut_Cookies_(4801683503).jpg), Miia Ranta from Finland, CC BY-SA 2.0
+  - biskuit — [Morinaga marie biscuit 2014-2.jpg](https://commons.wikimedia.org/wiki/File:Morinaga_marie_biscuit_2014-2.jpg), Kentin, CC BY-SA 4.0
 - Gambar keranjang: disediakan pemilik proyek

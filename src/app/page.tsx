@@ -29,6 +29,7 @@ const SECTION_PICS: Record<string, string[]> = {
   "susu-telur": ["telur-ayam", "tahu", "susu"],
   karbo: ["beras", "roti-tawar", "kentang"],
   bumbu: ["bawang-merah", "cabai-merah", "jahe"],
+  kue: ["cokelat-batang", "biskuit", "cokelat-bubuk"],
   sembako: ["gula-pasir", "kacang-merah", "madu"],
 };
 
@@ -128,7 +129,7 @@ export default function Home() {
 
           {/* ───── kategori ───── */}
           <SectionTitle id="kategori" title="Belanja per Kategori" />
-          <div className="grid grid-cols-4 gap-x-2 gap-y-4 px-4 md:gap-4 md:px-8 xl:grid-cols-8 xl:gap-3 xl:px-10">
+          <div className="grid grid-cols-3 gap-x-2 gap-y-4 px-4 md:grid-cols-5 md:gap-4 md:px-8 xl:grid-cols-9 xl:gap-3 xl:px-10">
             {sections.map((s) => {
               const n = inCart(s.id);
               return (

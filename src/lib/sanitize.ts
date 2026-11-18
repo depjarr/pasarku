@@ -12,7 +12,7 @@ import type { Recommendation } from "./schema";
 const ZERO_AMOUNT =
   /^\s*0+([.,]0+)?\s*(g|gr|gram|kg|ml|l|liter|buah|butir|siung|ekor|potong|lembar|sdm|sdt|batang|ikat|bungkus|papan)?\.?\s*$/i;
 const ANIMAL_SECTIONS = new Set(["daging", "ikan"]);
-const ANIMAL_PRODUCTS = new Set(["telur-ayam", "telur-puyuh", "susu", "susu-full", "keju", "parmesan", "mentega", "madu"]);
+const ANIMAL_PRODUCTS = new Set(["telur-ayam", "telur-puyuh", "telur-asin", "susu", "susu-full", "keju", "parmesan", "mentega", "madu", "skm", "whipping-cream", "cream-cheese", "cokelat-putih", "karamel", "biskuit"]);
 const ANIMAL_WORDS = /\b(ikan|ayam|daging|sapi|kambing|domba|bebek|udang|cumi|kerang|tiram|teri|ebi|terasi|telur|susu|keju|mentega|madu|kaldu ayam|kaldu sapi)\b/i;
 
 export function sanitizeRecommendation(r: Recommendation): Recommendation {
