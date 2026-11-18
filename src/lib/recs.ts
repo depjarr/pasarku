@@ -3,6 +3,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { DEFAULT_TOOLS, type ToolId } from "./alat";
+import type { CuisineId } from "./masakan";
 import type { Recommendation } from "./schema";
 
 export type Goal = "seimbang" | "diet" | "otot" | "keluarga";
@@ -22,6 +23,9 @@ type RecsState = {
   /** alat masak yang dimiliki user — menu hanya memakai alat ini */
   alat: ToolId[];
   setAlat: (a: ToolId[]) => void;
+  /** jenis masakan yang diinginkan — kosong = bebas */
+  masakan: CuisineId[];
+  setMasakan: (m: CuisineId[]) => void;
   /** hasil AI terakhir + "sidik jari" keranjang & preferensi saat diminta */
   result: { key: string; data: Recommendation } | null;
   setResult: (r: { key: string; data: Recommendation } | null) => void;
@@ -40,6 +44,8 @@ export const useRecs = create<RecsState>()(
       setTujuan: (tujuan) => set({ tujuan }),
       alat: DEFAULT_TOOLS,
       setAlat: (alat) => set({ alat }),
+      masakan: [],
+      setMasakan: (masakan) => set({ masakan }),
       result: null,
       setResult: (result) => set({ result }),
       consumedKey: null,
@@ -49,5 +55,5 @@ export const useRecs = create<RecsState>()(
   ),
 );
 
-export const recKey = (items: Record<string, number>, orang: number, tujuan: string, alat: string[] = []) =>
-  JSON.stringify([Object.entries(items).sort(), orang, tujuan, [...alat].sort()]);
+export const recKey = (items: Record<string, number>, orang: number, tujuan: string, alat: string[] = [], masakan: string[] = []) =>
+  JSON.stringify([Object.entries(items).sort(), orang, tujuan, [...alat].sort(), [...masakan].sort()]);

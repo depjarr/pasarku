@@ -94,6 +94,7 @@ function useDetailedRecipe(key: string, m: StoredMenu | undefined, save: (r: Men
         porsi: m.porsi,
         bahan: m.resep.kelompokBahan.flatMap((g) => g.bahan),
         alat: m.alatDipakai ?? [],
+        asalMasakan: m.asalMasakan ?? null,
       }),
       signal: ctrl.signal,
     })

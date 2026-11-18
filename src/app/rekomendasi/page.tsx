@@ -8,6 +8,7 @@ import { useCart, useCartLines } from "@/lib/cart";
 import { CookingLoader } from "@/components/CookingLoader";
 import { ToolArt } from "@/components/ToolArt";
 import { normalizeTools, toolById, TOOLS, type ToolId } from "@/lib/alat";
+import { CUISINES, cuisineById, normalizeCuisine, type CuisineId } from "@/lib/masakan";
 import { SuggestionList } from "@/components/Suggestions";
 import { WebPhoto } from "@/components/WebPhoto";
 import { useCookbook } from "@/lib/cookbook";
@@ -19,14 +20,14 @@ import { useHydrated } from "@/lib/useHydrated";
 export default function RecommendationPage() {
   const hydrated = useHydrated();
   const items = useCart((s) => s.items);
-  const { orang, tujuan, alat, result, setResult } = useRecs();
+  const { orang, tujuan, alat, masakan, result, setResult } = useRecs();
   const [error, setError] = useState<string | null>(null);
   const [attempt, setAttempt] = useState(0);
   // AI baru dipanggil setelah user memilih jumlah orang & tujuan di layar persiapan
   const [confirmed, setConfirmed] = useState(false);
 
   const hasItems = Object.keys(items).length > 0;
-  const key = recKey(items, orang, tujuan, alat);
+  const key = recKey(items, orang, tujuan, alat, masakan);
   // hasil terakhir tetap ditampilkan walau keranjang berubah (mis. setelah menambah saran bahan) — ditandai "stale"
   const data = result?.data ?? null;
   const stale = !!result && result.key !== key;
@@ -37,7 +38,7 @@ export default function RecommendationPage() {
     fetch("/api/rekomendasi", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ items, orang, tujuan, alat }),
+      body: JSON.stringify({ items, orang, tujuan, alat, masakan }),
       signal: ctrl.signal,
     })
       .then(async (r) => {
@@ -238,7 +239,10 @@ function MenuCard({ m, i }: { m: Menu; i: number }) {
       </div>
       <div className="flex items-center gap-2 p-4">
         <div className="min-w-0 flex-1">
-          <p className="text-[14px] font-medium text-brand-ink">{m.waktuMakan.charAt(0).toUpperCase() + m.waktuMakan.slice(1).toLowerCase()}, {m.jenis.toLowerCase()}</p>
+          <p className="text-[14px] font-medium text-brand-ink">
+            {m.waktuMakan.charAt(0).toUpperCase() + m.waktuMakan.slice(1).toLowerCase()}, {m.jenis.toLowerCase()}
+            {normalizeCuisine(m.asalMasakan) && <span className="text-secondary">, masakan {cuisineById[normalizeCuisine(m.asalMasakan)!].label}</span>}
+          </p>
           <h3 className="text-[19px] font-bold leading-tight">{m.nama}</h3>
           <p className="mt-0.5 line-clamp-2 text-[14px] text-secondary">{m.deskripsi}</p>
           <div className="mt-2 flex flex-wrap gap-x-3 gap-y-1 text-[13px] text-secondary">
@@ -306,7 +310,11 @@ function Empty({ title, text, href, cta }: { title: string; text: string; href: 
 
 /** Layar persiapan sebelum AI meracik: pilih jumlah orang & tujuan kesehatan. */
 function PortionPicker({ onConfirm }: { onConfirm: () => void }) {
-  const { orang, tujuan, setOrang, setTujuan, alat, setAlat } = useRecs();
+  const { orang, tujuan, setOrang, setTujuan, alat, setAlat, masakan, setMasakan } = useRecs();
+  const toggleCuisine = (id: CuisineId) => {
+    const cur = useRecs.getState().masakan;
+    setMasakan(cur.includes(id) ? cur.filter((c) => c !== id) : [...cur, id]);
+  };
   // baca pilihan terbaru dari store (bukan dari render) supaya ketukan cepat berturut-turut tidak saling menimpa
   const toggleTool = (id: ToolId) => {
     const cur = useRecs.getState().alat;
@@ -414,6 +422,37 @@ function PortionPicker({ onConfirm }: { onConfirm: () => void }) {
                   )}
                   <ToolArt id={t.id} className={`h-12 w-[60px] transition ${on ? "" : "opacity-70 grayscale-[35%]"}`} />
                   <span className="mt-1 text-[12px] font-semibold leading-tight">{t.label}</span>
+                </button>
+              );
+            })}
+          </div>
+
+          <div className="mt-6 flex items-baseline justify-between">
+            <h3 className="text-[15px] font-semibold">Jenis masakan</h3>
+            {masakan.length > 0 ? (
+              <button onClick={() => setMasakan([])} className="text-[13px] text-ios-blue active:opacity-50">
+                Bebas saja
+              </button>
+            ) : (
+              <span className="text-[13px] text-secondary">Bebas</span>
+            )}
+          </div>
+          <p className="mt-0.5 text-[13px] text-secondary">Pilih satu atau beberapa. Kalau tidak memilih, AI mencampur sesuai bahan.</p>
+          <div className="mt-2.5 grid grid-cols-2 gap-2 sm:grid-cols-4">
+            {CUISINES.map((c) => {
+              const on = masakan.includes(c.id);
+              return (
+                <button
+                  key={c.id}
+                  onClick={() => toggleCuisine(c.id)}
+                  aria-pressed={on}
+                  className={`rounded-[14px] border p-2.5 text-left transition active:scale-95 ${on ? "border-brand bg-[#eaf6e4]" : "border-separator bg-white"}`}
+                >
+                  <span className="flex items-center justify-between gap-1">
+                    <span className="text-[14px] font-semibold">{c.label}</span>
+                    {on && <CheckIcon className="h-4 w-4 shrink-0 text-brand-ink" />}
+                  </span>
+                  <span className="mt-0.5 block text-[11px] leading-snug text-secondary">{c.contoh}</span>
                 </button>
               );
             })}

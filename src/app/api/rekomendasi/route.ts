@@ -1,6 +1,7 @@
 import { z } from "zod";
 import { DEFAULT_TOOLS, normalizeTools, TOOL_IDS, TOOL_WORDS, TOOLS, type ToolId } from "@/lib/alat";
 import { productById, products } from "@/lib/data";
+import { CUISINE_IDS, CUISINES, normalizeCuisine } from "@/lib/masakan";
 import { aiErrorResponse, aiHeaders, makeAsk, withFallback } from "@/lib/generate";
 import { sanitizeRecommendation, scaleToStock, toGrams, validateRecommendation } from "@/lib/sanitize";
 import { recommendationSchema } from "@/lib/schema";
@@ -12,6 +13,7 @@ const bodySchema = z.object({
   orang: z.number().int().min(1).max(10).default(2),
   tujuan: z.enum(["seimbang", "diet", "otot", "keluarga"]).default("seimbang"),
   alat: z.array(z.enum(TOOL_IDS)).min(1).max(TOOL_IDS.length).default(DEFAULT_TOOLS),
+  masakan: z.array(z.enum(CUISINE_IDS)).max(CUISINE_IDS.length).default([]),
 });
 
 const goalText: Record<string, string> = {
@@ -49,7 +51,7 @@ export async function POST(req: Request) {
   const parsed = bodySchema.safeParse(await req.json().catch(() => null));
   if (!parsed.success) return Response.json({ error: "Data keranjang tidak valid." }, { status: 400 });
 
-  const { items, orang, tujuan, alat } = parsed.data;
+  const { items, orang, tujuan, alat, masakan } = parsed.data;
   const cartItems = Object.fromEntries(Object.entries(items).filter(([id]) => productById[id]));
   if (Object.keys(cartItems).length === 0) return Response.json({ error: "Keranjang kosong." }, { status: 400 });
 
@@ -67,6 +69,9 @@ export async function POST(req: Request) {
   const prompt =
     `Bahan di keranjang (format: [id] nama: jumlah):\n${list.join("\n")}\n\n` +
     `Dimasak untuk ${orang} orang. Tujuan: ${goalText[tujuan]}.\n` +
+    (masakan.length
+      ? `JENIS MASAKAN yang diinginkan: ${CUISINES.filter((c) => masakan.includes(c.id)).map((c) => `${c.label} (mis. ${c.contoh})`).join("; ")}. SEMUA menu harus dari jenis ini${masakan.length > 1 ? " (sebar ke beberapa jenis yang dipilih)" : ""}, tetap memakai bahan keranjang; isi asalMasakan sesuai.\n`
+      : "Jenis masakan bebas, utamakan yang paling cocok dengan bahan; isi asalMasakan tiap menu.\n") +
     `ALAT TERSEDIA (id: kegunaan): ${TOOLS.filter((t) => alat.includes(t.id)).map((t) => `${t.id}: ${t.bisa}`).join("; ")}.\n` +
     "Buat 3-5 menu dengan jenis masakan dan waktu makan yang bervariasi.\n\n" +
     `KATALOG TOKO (untuk saranBahan, pilih id persis dari sini): ${catalog}`;
@@ -86,6 +91,9 @@ export async function POST(req: Request) {
           const asing = dipakai.filter((t) => !alat.includes(t));
           if (asing.length) toolIssues.push(`Menu "${m.nama}" memakai alat yang tidak dimiliki user (${asing.join(", ")}). Ganti teknik memasaknya.`);
           m.alatDipakai = dipakai.filter((t) => alat.includes(t));
+          // asal masakan harus sesuai pilihan user (bila memilih)
+          const asal = normalizeCuisine(m.asalMasakan);
+          if (masakan.length && (!asal || !masakan.includes(asal))) toolIssues.push(`Menu "${m.nama}" bukan masakan ${masakan.join("/")} seperti yang diminta user. Ganti dengan menu dari jenis itu.`);
           // nama menu / langkah tidak boleh menyebut alat yang tidak dimiliki (mis. "Martabak Teflon" padahal tak punya teflon)
           const teks = `${m.nama} ${m.resep.tahapan.flatMap((t) => t.langkah.map((s) => s.instruksi)).join(" ")}`;
           const disebut = (Object.entries(TOOL_WORDS) as [ToolId, RegExp][]).filter(([id, re]) => !alat.includes(id) && re.test(teks)).map(([id]) => id);

@@ -66,6 +66,7 @@ export const recommendationSchema = z.object({
           .describe("kata kunci pencarian Google Images (Bahasa Indonesia, 2-5 kata) untuk foto hidangan jadi ini; WAJIB memuat nama bahan utamanya (mis. ikan tongkol, daging sapi, tempe), pakai nama masakan umum yang mudah ditemukan, mis. 'oseng daging sapi pedas', 'sop daging sapi kunyit'"),
         jenis: z.string().describe("jenis masakan, mis. 'Jajanan Pasar', 'Tumisan', 'Sup', 'Gorengan', 'Salad', 'Minuman'"),
         waktuMakan: z.enum(["Sarapan", "Makan Siang", "Makan Malam", "Camilan"]),
+        asalMasakan: z.string().describe("asal masakan: Indonesia, Western, Chinese, Jepang, Korea, Thailand, India, atau Timur Tengah"),
         deskripsi: z.string().describe("1 kalimat menggugah selera"),
         porsi: z.number().int().describe("jumlah porsi yang dihasilkan"),
         waktuMasakMenit: z.number().int(),

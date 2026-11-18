@@ -21,6 +21,7 @@ const bodySchema = z.object({
     .min(1)
     .max(30),
   alat: z.array(z.enum(TOOL_IDS)).max(TOOL_IDS.length).default([]),
+  asalMasakan: z.string().max(40).nullable().default(null),
 });
 
 const SYSTEM =
@@ -47,7 +48,7 @@ export async function POST(req: Request) {
   const alatText = m.alat.length
     ? `\n\nALAT MASAK yang dipakai (jangan memakai alat lain selain perlengkapan dasar seperti kompor, pisau, mangkuk, spatula, ulekan): ${TOOLS.filter((t) => m.alat.includes(t.id)).map((t) => t.label).join(", ")}. Sebut alat ini di langkah yang memakainya.`
     : "";
-  const prompt = `Menu: ${m.nama} (${m.jenis}, ${m.porsi} porsi)\nDeskripsi: ${m.deskripsi}\n\nBahan & takaran (format: [id] nama: jumlah):\n${bahan}${alatText}`;
+  const prompt = `Menu: ${m.nama} (${m.jenis}${m.asalMasakan ? `, masakan ${m.asalMasakan}` : ""}, ${m.porsi} porsi)\nDeskripsi: ${m.deskripsi}\n\nBahan & takaran (format: [id] nama: jumlah):\n${bahan}${alatText}`;
   const validIds = new Set(m.bahan.map((b) => b.productId).filter((id): id is string => !!id && !!productById[id]));
 
   try {
