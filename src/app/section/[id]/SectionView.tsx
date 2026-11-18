@@ -1,7 +1,7 @@
 "use client";
 
 import { notFound } from "next/navigation";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Basket } from "@/components/Basket";
 import { NavBar, SearchIcon, Segmented, XIcon } from "@/components/ios";
 import { ProductImage } from "@/components/ProductImage";
@@ -39,6 +39,17 @@ export function SectionView({ id }: { id: string }) {
   const [shelf, setShelf] = useState(section.shelves[0]);
   const [sort, setSort] = useState<Sort>("default");
   const [q, setQ] = useState("");
+  const [searchOpen, setSearchOpen] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const openSearch = () => {
+    setSearchOpen(true);
+    // fokus setelah kolom tampil
+    requestAnimationFrame(() => inputRef.current?.focus());
+  };
+  const closeSearch = () => {
+    setQ("");
+    setSearchOpen(false);
+  };
   const terms = searchTerms(q);
   const searching = terms.length > 0;
   const openProduct = useProductSheet((s) => s.open);
@@ -51,27 +62,48 @@ export function SectionView({ id }: { id: string }) {
 
   return (
     <main className="wall flex-1 pb-[300px]">
-      <NavBar title={section.name} back={{ href: "/", label: "Toko" }}>
-        <p className="text-[15px] text-secondary">{section.tagline}. Ketuk produk untuk melihat gizinya.</p>
-        {/* cari di section ini */}
-        <label className="mt-3 flex h-10 items-center gap-2 rounded-[10px] bg-black/[0.06] px-2.5 text-secondary md:max-w-[560px]">
-          <SearchIcon className="h-[18px] w-[18px] shrink-0" />
-          <input
-            type="search"
-            value={q}
-            onChange={(e) => setQ(e.target.value)}
-            onKeyDown={(e) => e.key === "Escape" && setQ("")}
-            placeholder={`Cari di ${section.name.toLowerCase()}`}
-            aria-label={`Cari bahan di ${section.name}`}
-            enterKeyHint="search"
-            className="h-full min-w-0 flex-1 bg-transparent text-[16px] text-label outline-none placeholder:text-secondary [&::-webkit-search-cancel-button]:hidden"
-          />
-          {q && (
-            <button onClick={() => setQ("")} aria-label="Hapus pencarian" className="grid h-5 w-5 shrink-0 place-items-center rounded-full bg-[#8e8e93] text-white">
-              <XIcon className="h-3 w-3" />
+      <NavBar
+        title={section.name}
+        back={{ href: "/", label: "Toko" }}
+        titleRight={
+          !searchOpen && (
+            <button
+              onClick={openSearch}
+              aria-label={`Cari bahan di ${section.name}`}
+              className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-black/[0.06] text-label active:opacity-60"
+            >
+              <SearchIcon className="h-5 w-5" />
             </button>
-          )}
-        </label>
+          )
+        }
+      >
+        <p className="text-[15px] text-secondary">{section.tagline}. Ketuk produk untuk melihat gizinya.</p>
+        {/* kolom cari — muncul setelah ikon cari diketuk */}
+        {searchOpen && (
+          <div className="mt-3 flex items-center gap-3 md:max-w-[560px]">
+            <label className="flex h-10 min-w-0 flex-1 items-center gap-2 rounded-[10px] bg-black/[0.06] px-2.5 text-secondary">
+              <SearchIcon className="h-[18px] w-[18px] shrink-0" />
+              <input
+                ref={inputRef}
+                type="search"
+                value={q}
+                onChange={(e) => setQ(e.target.value)}
+                onKeyDown={(e) => e.key === "Escape" && closeSearch()}
+                aria-label={`Cari bahan di ${section.name}`}
+                enterKeyHint="search"
+                className="h-full min-w-0 flex-1 bg-transparent text-[16px] text-label outline-none [&::-webkit-search-cancel-button]:hidden"
+              />
+              {q && (
+                <button onClick={() => setQ("")} aria-label="Hapus teks" className="grid h-5 w-5 shrink-0 place-items-center rounded-full bg-[#8e8e93] text-white">
+                  <XIcon className="h-3 w-3" />
+                </button>
+              )}
+            </label>
+            <button onClick={closeSearch} className="shrink-0 text-[17px] text-ios-blue active:opacity-50">
+              Batal
+            </button>
+          </div>
+        )}
         {!searching && section.shelves.length > 1 && (
           <div className="mt-3 md:max-w-[560px]">
             <Segmented options={section.shelves.map((s) => ({ value: s, label: s }))} value={shelf} onChange={jump} />

@@ -68,12 +68,15 @@ export function NavBar({
   large = true,
   back,
   right,
+  titleRight,
   children,
 }: {
   title: string;
   large?: boolean;
   back?: { href: string; label: string };
   right?: React.ReactNode;
+  /** elemen di ujung kanan, sejajar dengan judul besar (mis. tombol cari) */
+  titleRight?: React.ReactNode;
   children?: React.ReactNode;
 }) {
   const titleRef = useRef<HTMLHeadingElement>(null);
@@ -111,9 +114,12 @@ export function NavBar({
       </header>
       {large && (
         <div className="px-4 pb-1 md:px-8 md:pt-2">
-          <h1 ref={titleRef} className="text-[34px] font-bold leading-[41px] tracking-[0.01em]">
-            {title}
-          </h1>
+          <div className="flex items-center justify-between gap-3">
+            <h1 ref={titleRef} className="min-w-0 text-[34px] font-bold leading-[41px] tracking-[0.01em]">
+              {title}
+            </h1>
+            {titleRight}
+          </div>
           {children}
         </div>
       )}
