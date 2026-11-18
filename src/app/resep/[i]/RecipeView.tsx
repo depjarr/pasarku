@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { ChefIcon, ClockIcon, FlameIcon, NavBar, PeopleIcon } from "@/components/ios";
 import { RecipeActions } from "@/components/RecipeActions";
+import { SupportLink } from "@/components/Support";
 import { ToolArt } from "@/components/ToolArt";
 import { normalizeTools, toolById } from "@/lib/alat";
 import { SuggestionList } from "@/components/Suggestions";
@@ -179,6 +180,10 @@ export function RecipeView({ source }: { source: RecipeSource }) {
       )}
 
       <RecipeActions m={m} targetId="resep-isi" />
+      <p data-noexport className="mx-4 mt-2 text-center text-[12px] text-secondary">
+        Suka resep ini?{" "}
+        <SupportLink className="font-medium text-brand-ink underline underline-offset-2">Dukung PasarKu di Saweria</SupportLink>
+      </p>
 
       {/* kelompok bahan */}
       {m.resep.kelompokBahan.map((g) => (

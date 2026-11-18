@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import { CheckIcon, ChefIcon, ChevronRight, ClockIcon, FlameIcon, Group, NavBar, PeopleIcon, PrimaryButton, SparklesIcon } from "@/components/ios";
 import { useCart, useCartLines } from "@/lib/cart";
 import { CookingLoader } from "@/components/CookingLoader";
+import { countRacik, SupportCard } from "@/components/Support";
 import { ToolArt } from "@/components/ToolArt";
 import { normalizeTools, toolById, TOOLS, type ToolId } from "@/lib/alat";
 import { CUISINES, cuisineById, normalizeCuisine, type CuisineId } from "@/lib/masakan";
@@ -45,6 +46,7 @@ export default function RecommendationPage() {
         const json = await r.json();
         if (!r.ok) throw new Error(json.error ?? "Terjadi kesalahan.");
         setResult({ key, data: json as Recommendation });
+        countRacik();
       })
       .catch((e) => e.name !== "AbortError" && setError(e.message));
     return () => ctrl.abort();
@@ -172,6 +174,8 @@ function Content({ data }: { data: Recommendation }) {
           </div>
         ))}
       </Group>
+
+      <SupportCard />
     </>
   );
 }

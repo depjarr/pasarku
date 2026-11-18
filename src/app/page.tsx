@@ -10,6 +10,7 @@ import { QtyControl } from "@/components/QtyControl";
 import { useCart, useCartLines } from "@/lib/cart";
 import { productById, products, rupiah, sections, type Product } from "@/lib/data";
 import { AppLogo } from "@/components/AppLogo";
+import { SupportLink } from "@/components/Support";
 import { WebPhoto } from "@/components/WebPhoto";
 import { useCookbook } from "@/lib/cookbook";
 import { matchProduct, searchTerms } from "@/lib/search";
@@ -189,6 +190,12 @@ export default function Home() {
 
           {/* ───── masak lagi dari rantang / cara pakai ───── */}
           <FromRantang />
+
+          {/* HP & tablet: ajakan dukung yang tidak mengganggu (laptop: di sidebar & footer) */}
+          <p className="mx-4 mt-8 text-center text-[13px] text-secondary md:mx-8 xl:hidden">
+            PasarKu gratis dipakai.{" "}
+            <SupportLink className="font-medium text-brand-ink underline underline-offset-2">Dukung developernya di Saweria</SupportLink>
+          </p>
 
           <Footer />
         </>
@@ -391,6 +398,7 @@ function Footer() {
             <li><Link href="/keranjang" className="hover:text-white">Keranjang</Link></li>
             <li><Link href="/rekomendasi" className="hover:text-white">Rekomendasi Menu AI</Link></li>
             <li><Link href="/resep-saya" className="hover:text-white">Rantang Resep</Link></li>
+            <li><SupportLink className="hover:text-white">Dukung PasarKu di Saweria</SupportLink></li>
           </ul>
         </div>
       </div>
