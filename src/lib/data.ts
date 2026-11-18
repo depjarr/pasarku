@@ -246,6 +246,7 @@ export const products: Product[] = [
     ["tepung-ketan", "Tepung Ketan Putih", "/produk/tepung-ketan.png", 9000, "500 g"],
     ["tepung-tapioka", "Tepung Tapioka", "/produk/tepung-tapioka.png", 7500, "500 g"],
     ["baking-powder", "Baking Powder", "/produk/baking-powder.png", 9000, "45 g"],
+    ["baking-soda", "Baking Soda (Soda Kue)", "/produk/baking-soda.png", 6000, "100 g"],
     ["ragi", "Ragi Instan", "/produk/ragi.png", 7000, "3 sachet"],
     ["tepung-maizena", "Tepung Maizena", "/produk/tepung-maizena.png", 9000, "150 g"],
   ]),

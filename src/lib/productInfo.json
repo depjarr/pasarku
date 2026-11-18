@@ -3920,5 +3920,25 @@
    "Saus caramel",
    "Minuman boba brown sugar"
   ]
+ },
+ "baking-soda": {
+  "gizi": {
+   "basis": "100 g",
+   "kalori": 0,
+   "protein": 0,
+   "karbohidrat": 0,
+   "lemak": 0,
+   "serat": 0
+  },
+  "tips": [
+   "Pastikan kemasan tertutup rapat dan tidak ada gumpalan keras di dalamnya.",
+   "Periksa tanggal kedaluwarsa pada kemasan untuk menjamin daya kembangnya masih optimal."
+  ],
+  "penyimpanan": "Simpan di dalam wadah kedap udara di tempat yang sejuk, kering, dan terhindar dari cahaya matahari langsung.",
+  "contohMasakan": [
+   "Kue Pukis",
+   "Cake Pisang",
+   "Martabak Manis"
+  ]
  }
 }

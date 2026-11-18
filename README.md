@@ -74,7 +74,7 @@ Next.js 16 (App Router) · Tailwind CSS 4 · Zustand (keranjang, disimpan di loc
   - skm — [Tin of condensed milk.jpg](https://commons.wikimedia.org/wiki/File:Tin_of_condensed_milk.jpg), Robin from Rotterdam, Netherlands, CC BY-SA 2.0
   - whipping-cream — [Frozen Whipped Cream Sandwiches.jpg](https://commons.wikimedia.org/wiki/File:Frozen_Whipped_Cream_Sandwiches.jpg), Jo, CC BY 2.0
   - cream-cheese — [2019-10-12 15 31 00 A open carton of Harris Teeter Plain Cream Cheese Spread in the Dulles section of Sterling, Loudoun County, Virginia.jpg](https://commons.wikimedia.org/wiki/File:2019-10-12_15_31_00_A_open_carton_of_Harris_Teeter_Plain_Cream_Cheese_Spread_in_the_Dulles_section_of_Sterling,_Loudoun_County,_Virginia.jpg), Famartin, CC BY-SA 4.0
-  - agar — [Sodium bicarbonate.jpg](https://commons.wikimedia.org/wiki/File:Sodium_bicarbonate.jpg), Thavox, Public domain
+  - agar — [Agar-agar.jpg](https://commons.wikimedia.org/wiki/File:Agar-agar.jpg), Unkky, CC BY-SA 3.0
   - kelapa-kering — [Coconut Cookies (4801683503).jpg](https://commons.wikimedia.org/wiki/File:Coconut_Cookies_(4801683503).jpg), Miia Ranta from Finland, CC BY-SA 2.0
   - biskuit — [Morinaga marie biscuit 2014-2.jpg](https://commons.wikimedia.org/wiki/File:Morinaga_marie_biscuit_2014-2.jpg), Kentin, CC BY-SA 4.0
   - jamur-enoki — [A small but tasty harvest (10843427516).jpg](https://commons.wikimedia.org/wiki/File:A_small_but_tasty_harvest_(10843427516).jpg), Wendell Smith, CC BY 2.0
@@ -94,4 +94,5 @@ Next.js 16 (App Router) · Tailwind CSS 4 · Zustand (keranjang, disimpan di loc
   - sagu-mutiara — [Sago 20161224.jpg](https://commons.wikimedia.org/wiki/File:Sago_20161224.jpg), Televido, CC BY-SA 4.0
   - yogurt — [Plain Yogurt.jpg](https://commons.wikimedia.org/wiki/File:Plain_Yogurt.jpg), Alabama Extension, CC0
   - gula-cokelat — [Brown sugar.jpg](https://commons.wikimedia.org/wiki/File:Brown_sugar.jpg), EstherDje, CC BY-SA 4.0 (warna sedikit dihangatkan)
+  - baking-soda — [Sodium bicarbonate.jpg](https://commons.wikimedia.org/wiki/File:Sodium_bicarbonate.jpg), Thavox, Public domain
 - Gambar keranjang: disediakan pemilik proyek
