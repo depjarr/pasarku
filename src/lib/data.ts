@@ -255,6 +255,7 @@ export const products: Product[] = [
     ["cokelat-putih", "Cokelat Putih", "/produk/cokelat-putih.png", 35000, "200 g"],
     ["choco-chips", "Choco Chips", "Dark Chocolate Chips", 16000, "100 g"],
     ["gula-halus", "Gula Halus", "/produk/gula-halus.png", 10000, "250 g"],
+    ["gula-cokelat", "Gula Cokelat (Brown Sugar)", "/produk/gula-cokelat.png", 16000, "500 g"],
     ["vanili", "Vanili", "Vanilla", 5000, "10 g"],
     ["kismis", "Kismis", "Raisins", 18000, "100 g"],
     ["karamel", "Saus Karamel", "/produk/karamel.png", 28000, "250 ml"],

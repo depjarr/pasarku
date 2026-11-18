@@ -93,4 +93,5 @@ Next.js 16 (App Router) · Tailwind CSS 4 · Zustand (keranjang, disimpan di loc
   - es-krim — [Bowl ~ Ice cream.jpg](https://commons.wikimedia.org/wiki/File:Bowl_~_Ice_cream.jpg), Mitchellhobbs, CC BY-SA 4.0
   - sagu-mutiara — [Sago 20161224.jpg](https://commons.wikimedia.org/wiki/File:Sago_20161224.jpg), Televido, CC BY-SA 4.0
   - yogurt — [Plain Yogurt.jpg](https://commons.wikimedia.org/wiki/File:Plain_Yogurt.jpg), Alabama Extension, CC0
+  - gula-cokelat — [Brown sugar.jpg](https://commons.wikimedia.org/wiki/File:Brown_sugar.jpg), EstherDje, CC BY-SA 4.0 (warna sedikit dihangatkan)
 - Gambar keranjang: disediakan pemilik proyek

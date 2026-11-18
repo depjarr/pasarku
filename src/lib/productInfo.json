@@ -3900,5 +3900,25 @@
    "Es Campur",
    "Kue Sagu Mutiara"
   ]
+ },
+ "gula-cokelat": {
+  "gizi": {
+   "basis": "100 g",
+   "kalori": 380,
+   "protein": 0.1,
+   "karbohidrat": 98,
+   "lemak": 0,
+   "serat": 0
+  },
+  "tips": [
+   "Pilih gula cokelat yang teksturnya masih lembut dan tidak menggumpal keras.",
+   "Pastikan kemasan rapat dan tidak ada udara yang masuk agar tidak mudah mencair."
+  ],
+  "penyimpanan": "Simpan di dalam wadah kedap udara pada suhu ruang yang kering agar tidak mudah mengeras.",
+  "contohMasakan": [
+   "Kue bolu gula merah",
+   "Saus caramel",
+   "Minuman boba brown sugar"
+  ]
  }
 }
