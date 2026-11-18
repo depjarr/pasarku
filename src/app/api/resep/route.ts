@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { TOOL_IDS, TOOLS } from "@/lib/alat";
 import { productById } from "@/lib/data";
 import { aiErrorResponse, aiHeaders, makeAsk, withFallback } from "@/lib/generate";
 import { recipeSchema } from "@/lib/schema";
@@ -19,6 +20,7 @@ const bodySchema = z.object({
     .array(z.object({ nama: z.string().max(80), jumlah: z.string().max(40), productId: z.string().nullable(), persiapan: z.string().nullable() }))
     .min(1)
     .max(30),
+  alat: z.array(z.enum(TOOL_IDS)).max(TOOL_IDS.length).default([]),
 });
 
 const SYSTEM =
@@ -42,7 +44,10 @@ export async function POST(req: Request) {
   const bahan = m.bahan
     .map((b) => `- ${b.productId && productById[b.productId] ? `[${b.productId}] ` : ""}${b.nama}: ${b.jumlah}${b.persiapan ? ` (${b.persiapan})` : ""}`)
     .join("\n");
-  const prompt = `Menu: ${m.nama} (${m.jenis}, ${m.porsi} porsi)\nDeskripsi: ${m.deskripsi}\n\nBahan & takaran (format: [id] nama: jumlah):\n${bahan}`;
+  const alatText = m.alat.length
+    ? `\n\nALAT MASAK yang dipakai (jangan memakai alat lain selain perlengkapan dasar seperti kompor, pisau, mangkuk, spatula, ulekan): ${TOOLS.filter((t) => m.alat.includes(t.id)).map((t) => t.label).join(", ")}. Sebut alat ini di langkah yang memakainya.`
+    : "";
+  const prompt = `Menu: ${m.nama} (${m.jenis}, ${m.porsi} porsi)\nDeskripsi: ${m.deskripsi}\n\nBahan & takaran (format: [id] nama: jumlah):\n${bahan}${alatText}`;
   const validIds = new Set(m.bahan.map((b) => b.productId).filter((id): id is string => !!id && !!productById[id]));
 
   try {

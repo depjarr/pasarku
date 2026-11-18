@@ -70,6 +70,9 @@ export const recommendationSchema = z.object({
         porsi: z.number().int().describe("jumlah porsi yang dihasilkan"),
         waktuMasakMenit: z.number().int(),
         kesulitan: z.enum(["Mudah", "Sedang", "Sulit"]),
+        alatDipakai: z
+          .array(z.string())
+          .describe("id alat masak yang dipakai menu ini, HANYA dari daftar ALAT TERSEDIA (mis. [\"wajan\", \"kukusan\"])"),
         resep: recipeSchema,
         nutrisiPerPorsi: z.object({
           kalori: z.number().describe("kkal"),

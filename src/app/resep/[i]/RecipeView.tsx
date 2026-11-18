@@ -6,6 +6,8 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { ChefIcon, ClockIcon, FlameIcon, NavBar, PeopleIcon } from "@/components/ios";
 import { RecipeActions } from "@/components/RecipeActions";
+import { ToolArt } from "@/components/ToolArt";
+import { normalizeTools, toolById } from "@/lib/alat";
 import { SuggestionList } from "@/components/Suggestions";
 import { WebPhoto } from "@/components/WebPhoto";
 import { productById } from "@/lib/data";
@@ -91,6 +93,7 @@ function useDetailedRecipe(key: string, m: StoredMenu | undefined, save: (r: Men
         deskripsi: m.deskripsi,
         porsi: m.porsi,
         bahan: m.resep.kelompokBahan.flatMap((g) => g.bahan),
+        alat: m.alatDipakai ?? [],
       }),
       signal: ctrl.signal,
     })
@@ -159,6 +162,21 @@ export function RecipeView({ source }: { source: RecipeSource }) {
       </div>
 
       {/* bagikan / cetak / simpan gambar */}
+      {/* alat masak yang dipakai menu ini */}
+      {normalizeTools(m.alatDipakai).length > 0 && (
+        <div className="mx-4 mt-3 rounded-[14px] bg-white p-3 ring-1 ring-[#d5e4cd]">
+          <p className="px-1 text-[13px] font-semibold" style={{ color: GREEN }}>Alat yang dipakai</p>
+          <div className="mt-1.5 flex flex-wrap gap-2">
+            {normalizeTools(m.alatDipakai).map((id) => (
+              <span key={id} className="flex items-center gap-1.5 rounded-[12px] bg-[#f6f9f3] py-1 pl-1 pr-3 text-[14px] font-medium">
+                <ToolArt id={id} className="h-8 w-10" />
+                {toolById[id].label}
+              </span>
+            ))}
+          </div>
+        </div>
+      )}
+
       <RecipeActions m={m} targetId="resep-isi" />
 
       {/* kelompok bahan */}

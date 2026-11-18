@@ -6,6 +6,8 @@ import { useEffect, useRef, useState } from "react";
 import { CheckIcon, ChefIcon, ChevronRight, ClockIcon, FlameIcon, Group, NavBar, PeopleIcon, PrimaryButton, SparklesIcon } from "@/components/ios";
 import { useCart, useCartLines } from "@/lib/cart";
 import { CookingLoader } from "@/components/CookingLoader";
+import { ToolArt } from "@/components/ToolArt";
+import { normalizeTools, toolById, TOOLS, type ToolId } from "@/lib/alat";
 import { SuggestionList } from "@/components/Suggestions";
 import { WebPhoto } from "@/components/WebPhoto";
 import { useCookbook } from "@/lib/cookbook";
@@ -17,14 +19,14 @@ import { useHydrated } from "@/lib/useHydrated";
 export default function RecommendationPage() {
   const hydrated = useHydrated();
   const items = useCart((s) => s.items);
-  const { orang, tujuan, result, setResult } = useRecs();
+  const { orang, tujuan, alat, result, setResult } = useRecs();
   const [error, setError] = useState<string | null>(null);
   const [attempt, setAttempt] = useState(0);
   // AI baru dipanggil setelah user memilih jumlah orang & tujuan di layar persiapan
   const [confirmed, setConfirmed] = useState(false);
 
   const hasItems = Object.keys(items).length > 0;
-  const key = recKey(items, orang, tujuan);
+  const key = recKey(items, orang, tujuan, alat);
   // hasil terakhir tetap ditampilkan walau keranjang berubah (mis. setelah menambah saran bahan) — ditandai "stale"
   const data = result?.data ?? null;
   const stale = !!result && result.key !== key;
@@ -35,7 +37,7 @@ export default function RecommendationPage() {
     fetch("/api/rekomendasi", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ items, orang, tujuan }),
+      body: JSON.stringify({ items, orang, tujuan, alat }),
       signal: ctrl.signal,
     })
       .then(async (r) => {
@@ -245,6 +247,16 @@ function MenuCard({ m, i }: { m: Menu; i: number }) {
             <span className="flex items-center gap-1"><PeopleIcon className="h-4 w-4" />{m.porsi} porsi</span>
             <span className="flex items-center gap-1"><ChefIcon className="h-4 w-4" />{m.kesulitan}</span>
           </div>
+          {(m.alatDipakai?.length ?? 0) > 0 && (
+            <div className="mt-2 flex flex-wrap gap-1.5">
+              {normalizeTools(m.alatDipakai).map((id) => (
+                <span key={id} className="flex items-center gap-1 rounded-full bg-fill py-0.5 pl-1 pr-2 text-[12px] font-medium">
+                  <ToolArt id={id} className="h-4 w-5" />
+                  {toolById[id].label}
+                </span>
+              ))}
+            </div>
+          )}
         </div>
         <ChevronRight className="h-5 w-5 shrink-0 text-tertiary" />
       </div>
@@ -294,7 +306,12 @@ function Empty({ title, text, href, cta }: { title: string; text: string; href: 
 
 /** Layar persiapan sebelum AI meracik: pilih jumlah orang & tujuan kesehatan. */
 function PortionPicker({ onConfirm }: { onConfirm: () => void }) {
-  const { orang, tujuan, setOrang, setTujuan } = useRecs();
+  const { orang, tujuan, setOrang, setTujuan, alat, setAlat } = useRecs();
+  // baca pilihan terbaru dari store (bukan dari render) supaya ketukan cepat berturut-turut tidak saling menimpa
+  const toggleTool = (id: ToolId) => {
+    const cur = useRecs.getState().alat;
+    setAlat(cur.includes(id) ? cur.filter((t) => t !== id) : [...cur, id]);
+  };
   const { lines, count } = useCartLines();
   const quick = [1, 2, 3, 4, 5, 6, 8, 10];
 
@@ -373,8 +390,37 @@ function PortionPicker({ onConfirm }: { onConfirm: () => void }) {
             ))}
           </div>
 
-          <PrimaryButton className="mt-6" onClick={onConfirm}>
-            <SparklesIcon className="h-5 w-5" /> Racik Menu untuk {orang} Orang
+          <div className="mt-6 flex items-baseline justify-between">
+            <h3 className="text-[15px] font-semibold">Alat masak yang kamu punya</h3>
+            <span className="text-[13px] text-secondary">{alat.length} dipilih</span>
+          </div>
+          <p className="mt-0.5 text-[13px] text-secondary">Menu hanya memakai alat yang dipilih. Boleh pilih lebih dari satu.</p>
+          <div className="mt-2.5 grid grid-cols-3 gap-2 sm:grid-cols-5">
+            {TOOLS.map((t) => {
+              const on = alat.includes(t.id);
+              return (
+                <button
+                  key={t.id}
+                  onClick={() => toggleTool(t.id)}
+                  aria-pressed={on}
+                  className={`relative flex flex-col items-center rounded-[14px] border px-1 pb-2 pt-2.5 transition active:scale-95 ${
+                    on ? "border-brand bg-[#eaf6e4]" : "border-separator bg-white"
+                  }`}
+                >
+                  {on && (
+                    <span className="absolute right-1.5 top-1.5 grid h-5 w-5 place-items-center rounded-full bg-brand text-white">
+                      <CheckIcon className="h-3 w-3" />
+                    </span>
+                  )}
+                  <ToolArt id={t.id} className={`h-12 w-[60px] transition ${on ? "" : "opacity-70 grayscale-[35%]"}`} />
+                  <span className="mt-1 text-[12px] font-semibold leading-tight">{t.label}</span>
+                </button>
+              );
+            })}
+          </div>
+
+          <PrimaryButton className="mt-6" onClick={onConfirm} disabled={alat.length === 0}>
+            <SparklesIcon className="h-5 w-5" /> {alat.length === 0 ? "Pilih minimal satu alat" : `Racik Menu untuk ${orang} Orang`}
           </PrimaryButton>
         </div>
       </div>

@@ -2,6 +2,7 @@
 
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
+import { DEFAULT_TOOLS, type ToolId } from "./alat";
 import type { Recommendation } from "./schema";
 
 export type Goal = "seimbang" | "diet" | "otot" | "keluarga";
@@ -18,6 +19,9 @@ type RecsState = {
   tujuan: Goal;
   setOrang: (n: number) => void;
   setTujuan: (g: Goal) => void;
+  /** alat masak yang dimiliki user — menu hanya memakai alat ini */
+  alat: ToolId[];
+  setAlat: (a: ToolId[]) => void;
   /** hasil AI terakhir + "sidik jari" keranjang & preferensi saat diminta */
   result: { key: string; data: Recommendation } | null;
   setResult: (r: { key: string; data: Recommendation } | null) => void;
@@ -34,6 +38,8 @@ export const useRecs = create<RecsState>()(
       tujuan: "seimbang",
       setOrang: (orang) => set({ orang }),
       setTujuan: (tujuan) => set({ tujuan }),
+      alat: DEFAULT_TOOLS,
+      setAlat: (alat) => set({ alat }),
       result: null,
       setResult: (result) => set({ result }),
       consumedKey: null,
@@ -43,5 +49,5 @@ export const useRecs = create<RecsState>()(
   ),
 );
 
-export const recKey = (items: Record<string, number>, orang: number, tujuan: string) =>
-  JSON.stringify([Object.entries(items).sort(), orang, tujuan]);
+export const recKey = (items: Record<string, number>, orang: number, tujuan: string, alat: string[] = []) =>
+  JSON.stringify([Object.entries(items).sort(), orang, tujuan, [...alat].sort()]);
