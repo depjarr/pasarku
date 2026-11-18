@@ -3940,5 +3940,47 @@
    "Cake Pisang",
    "Martabak Manis"
   ]
+ },
+ "butter-tawar": {
+  "gizi": {
+   "basis": "100 g",
+   "kalori": 717,
+   "protein": 0.85,
+   "karbohidrat": 0.06,
+   "lemak": 81.11,
+   "serat": 0
+  },
+  "tips": [
+   "Pilih kemasan yang tertutup rapat tanpa robekan di bagian segelnya.",
+   "Pastikan aroma mentega harum khas susu segar dan tidak tengik.",
+   "Periksa tanggal kadaluarsa pada kemasan untuk menjamin kesegarannya."
+  ],
+  "penyimpanan": "Simpan di dalam wadah kedap udara di dalam kulkas atau freezer agar kualitasnya tetap terjaga.",
+  "contohMasakan": [
+   "Kue Nastar",
+   "Martabak Manis",
+   "Ayam Goreng Mentega"
+  ]
+ },
+ "butter-asin": {
+  "gizi": {
+   "basis": "100 g",
+   "kalori": 717,
+   "protein": 0.85,
+   "karbohidrat": 0.06,
+   "lemak": 81.11,
+   "serat": 0
+  },
+  "tips": [
+   "Pastikan tekstur mentega padat dan tidak terlalu lembek di suhu ruang.",
+   "Cek label pada kemasan untuk memastikan kadar garam sesuai kebutuhan.",
+   "Pilih produk yang disimpan dalam lemari pendingin supermarket."
+  ],
+  "penyimpanan": "Simpan di dalam laci pendingin kulkas dalam kondisi terbungkus rapat agar tidak menyerap bau makanan lain.",
+  "contohMasakan": [
+   "Nasi Goreng Mentega",
+   "Jagung Bakar Mentega",
+   "Tumis Sayur Mentega"
+  ]
  }
 }

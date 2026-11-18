@@ -95,4 +95,6 @@ Next.js 16 (App Router) · Tailwind CSS 4 · Zustand (keranjang, disimpan di loc
   - yogurt — [Plain Yogurt.jpg](https://commons.wikimedia.org/wiki/File:Plain_Yogurt.jpg), Alabama Extension, CC0
   - gula-cokelat — [Brown sugar.jpg](https://commons.wikimedia.org/wiki/File:Brown_sugar.jpg), EstherDje, CC BY-SA 4.0 (warna sedikit dihangatkan)
   - baking-soda — [Sodium bicarbonate.jpg](https://commons.wikimedia.org/wiki/File:Sodium_bicarbonate.jpg), Thavox, Public domain
+  - butter-tawar — [2023 Masło w maselniczce.jpg](https://commons.wikimedia.org/wiki/File:2023_Mas%C5%82o_w_maselniczce.jpg), Jacek Halicki, CC BY-SA 4.0
+  - butter-asin — [Butter and Knive.jpg](https://commons.wikimedia.org/wiki/File:Butter_and_Knive.jpg), Julikalucky, CC0
 - Gambar keranjang: disediakan pemilik proyek

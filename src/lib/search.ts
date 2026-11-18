@@ -12,7 +12,6 @@ const ALIASES: Record<string, string> = {
   bawput: "bawang putih",
   bamer: "bawang merah",
   santen: "santan",
-  butter: "mentega",
   margarine: "margarin",
   yoghurt: "yogurt",
   yougurt: "yogurt",

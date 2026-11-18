@@ -188,6 +188,8 @@ export const products: Product[] = [
     ["keju", "Keju Blok", "Cheese", 40000, "250 g"],
     ["parmesan", "Keju Parmesan", "Parmesan", 85000, "150 g"],
     ["mentega", "Mentega", "Melted Butter", 30000, "200 g"],
+    ["butter-tawar", "Butter Tawar (Unsalted)", "/produk/butter-tawar.png", 45000, "200 g"],
+    ["butter-asin", "Butter Asin (Salted)", "/produk/butter-asin.png", 42000, "200 g"],
   ]),
 
   // ───────── Beras & Karbo
